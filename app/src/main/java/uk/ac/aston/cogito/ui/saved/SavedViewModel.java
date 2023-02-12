@@ -1,16 +1,16 @@
-package uk.ac.aston.cogito.ui.notifications;
+package uk.ac.aston.cogito.ui.saved;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class SavedViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public SavedViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is saved fragment");
     }
 
     public LiveData<String> getText() {

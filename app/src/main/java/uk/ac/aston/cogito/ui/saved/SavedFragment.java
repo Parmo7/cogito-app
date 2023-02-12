@@ -1,4 +1,4 @@
-package uk.ac.aston.cogito.ui.dashboard;
+package uk.ac.aston.cogito.ui.saved;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import uk.ac.aston.cogito.databinding.FragmentDashboardBinding;
+import uk.ac.aston.cogito.databinding.FragmentSavedBinding;
 
-public class DashboardFragment extends Fragment {
+public class SavedFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentSavedBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        SavedViewModel savedViewModel =
+                new ViewModelProvider(this).get(SavedViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentSavedBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textSaved;
+        savedViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
