@@ -72,3 +72,21 @@ vcs.xml
 # Android Studio 3 in .gitignore file.
 .idea/caches
 .idea/modules.xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 3. ADDED BY ME
+
+app/src/debug/
