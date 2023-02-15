@@ -13,4 +13,13 @@
     <string name="home_primary_btn">Start</string>
     <string name="home_secondary_btn">Save</string>
 
+    <string name="home_section_general">General</string>
+    <string name="home_section_bells">Bells</string>
+    <string name="home_field_duration">Duration</string>
+    <string name="home_field_music">Background Music</string>
+    <string name="home_field_start_bell">Start Bell Sound</string>
+    <string name="home_field_end_bell">End Bell Sound</string>
+    <string name="home_field_intermediate_bell">Intermediate Bell Sound</string>
+    <string name="home_field_num_intermediate_bells">Intermediate Bells</string>
+    <string name="home_value_not_set">Not set</string>
 </resources>
