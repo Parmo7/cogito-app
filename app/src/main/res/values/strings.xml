@@ -7,4 +7,10 @@
     <string name="title_history">History</string>
     <string name="title_settings">Settings</string>
 
+
+    <!-- Home page-->
+    <string name="home_subtitle">Configure your mindfulness session.</string>
+    <string name="home_primary_btn">Start</string>
+    <string name="home_secondary_btn">Save</string>
+
 </resources>
