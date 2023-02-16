@@ -23,10 +23,14 @@
         <item name="addElevationShadow">true</item>
     </style>
 
+
+    <!-- Bottom bar -->
     <style name="App.Custom.BottomNavigationView.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/blue_3</item>
     </style>
 
+
+    <!-- Buttons -->
     <style name="CogitoButton.Primary" parent="@android:style/Widget.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
@@ -52,4 +56,16 @@
         <item name="iconGravity">textStart</item>
         <item name="android:topLeftRadius">10dp</item>
     </style>
+
+
+    <!-- Bottom sheet dialogs -->
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Material3.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="colorPrimary">@color/blue_2</item>
+    </style>
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_bottom_dialog</item>
+    </style>
+
+
 </resources>

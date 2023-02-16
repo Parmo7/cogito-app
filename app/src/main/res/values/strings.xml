@@ -22,4 +22,9 @@
     <string name="home_field_intermediate_bell">Intermediate Bell Sound</string>
     <string name="home_field_num_intermediate_bells">Intermediate Bells</string>
     <string name="home_value_not_set">Not set</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_duration_title">Set Duration</string>
+    <string name="dialog_duration_done_btn">Done</string>
+    <string name="dialog_duration_subtitle">Please set the duration of the session in minutes.</string>
 </resources>
