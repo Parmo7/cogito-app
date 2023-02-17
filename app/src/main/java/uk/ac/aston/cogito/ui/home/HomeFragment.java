@@ -10,16 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentHomeBinding;
 import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
 import uk.ac.aston.cogito.ui.home.dialogs.FormBottomDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.SelectDurationDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectMusicDialog;
 
 public class HomeFragment extends Fragment implements BottomDialogListener {
 
     public static final int _DEFAULT_DURATION = 10;
 
     private FragmentHomeBinding binding;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,12 +45,11 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
     private void initializeAllDialogSelectors() {
         SelectDurationDialog selectDurationDialog = new SelectDurationDialog(this, getContext());
-
+        SelectMusicDialog selectMusicDialog = new SelectMusicDialog(this, getContext());
 
 
         binding.homeSelectorDuration.setOnClickListener(v -> selectDurationDialog.show());
-
-
+        binding.homeSelectorMusic.setOnClickListener(v -> selectMusicDialog.show());
     }
 
 
@@ -57,9 +62,13 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
     @Override
     public void onDoneBtnPressed(FormBottomDialog dialog) {
+
         if (dialog instanceof SelectDurationDialog) {
-            Integer duration = ((SelectDurationDialog) dialog).getValue();
-            binding.homeValueDuration.setText(duration.toString() + " min");
+            Integer value = ((SelectDurationDialog) dialog).getValue();
+            binding.homeValueDuration.setText(value.toString() + " min");
+        } else if (dialog instanceof SelectMusicDialog) {
+            String value = ((SelectMusicDialog) dialog).getValue();
+            binding.homeValueMusic.setText(value);
         }
     }
 }

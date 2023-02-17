@@ -27,8 +27,6 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
         initializeDoneBtn();
     }
 
-    protected abstract void initializeForm();
-
     protected void initializeDoneBtn() {
         Button doneBtn = findViewById(R.id.done_btn);
 
@@ -39,4 +37,6 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
             });
         }
     }
+
+    protected abstract void initializeForm();
 }

@@ -27,4 +27,8 @@
     <string name="dialog_duration_title">Set Duration</string>
     <string name="dialog_duration_done_btn">Done</string>
     <string name="dialog_duration_subtitle">Please set the duration of the session in minutes.</string>
+
+    <string name="dialog_music_title">Select Background Music</string>
+    <string name="dialog_music_done_btn">Done</string>
+    <string name="dialog_music_subtitle">Please choose a background music</string>
 </resources>

@@ -14,12 +14,13 @@ import uk.ac.aston.cogito.ui.home.HomeFragment;
 
 public class SelectDurationDialog extends FormBottomDialog {
 
-    NumberPicker durationPicker;
+    private NumberPicker durationPicker;
 
     public SelectDurationDialog(BottomDialogListener listener, @NonNull Context context) {
         super(listener, context, R.layout.dialog_select_duration);
     }
 
+    @Override
     protected void initializeForm() {
         durationPicker = findViewById(R.id.duration_picker);
 
