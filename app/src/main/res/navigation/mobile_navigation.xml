@@ -39,7 +39,7 @@
         tools:layout="@layout/fragment_session" >
         <argument
             android:name="sessionConfig"
-            app:argType="uk.ac.aston.cogito.model.SessionConfig" />
+            app:argType="uk.ac.aston.cogito.model.entities.SessionConfig" />
         <action
             android:id="@+id/action_session_to_navigation_home"
             app:destination="@id/navigation_home"

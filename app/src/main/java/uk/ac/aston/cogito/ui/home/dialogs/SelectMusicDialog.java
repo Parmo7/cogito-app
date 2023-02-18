@@ -6,34 +6,67 @@ import android.widget.NumberPicker;
 
 import androidx.annotation.NonNull;
 
+import java.util.stream.Stream;
+
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.BackgroundMusicManager;
+import uk.ac.aston.cogito.model.entities.AudioResource;
+import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public class SelectMusicDialog extends FormBottomDialog {
 
     private NumberPicker musicPicker;
-    private String[] allBgMusicTracks;
+    private AudioResource[] allBgMusic;
+    private String[] allBgMusicNames;
 
-    public SelectMusicDialog(BottomDialogListener listener, @NonNull Context context) {
-        super(listener, context, R.layout.dialog_select_bg_music);
+    public SelectMusicDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
+        super(listener, context, sessionConfig, R.layout.dialog_select_bg_music);
 
-        allBgMusicTracks = BackgroundMusicManager.getMusicTitles();
+        allBgMusic = BackgroundMusicManager.getAllMusicArray();
     }
 
     @Override
     protected void initializeForm() {
         musicPicker = findViewById(R.id.music_picker);
 
-        musicPicker.setDisplayedValues(allBgMusicTracks);
+        // Extract array of all bg music titles
+        allBgMusicNames = new String[allBgMusic.length];
+        for (int idx = 0; idx < allBgMusic.length; idx++) {
+            AudioResource audioRes = allBgMusic[idx];
+            allBgMusicNames[idx] = audioRes.getName();
+        }
+
+        musicPicker.setDisplayedValues(allBgMusicNames);
         musicPicker.setMinValue(0);
-        musicPicker.setMaxValue(allBgMusicTracks.length - 1);
+        musicPicker.setMaxValue(allBgMusicNames.length - 1);
+
+        // Set the default value of the picker based on current configuration
+        setDefaultValue();
     }
 
-    public String getValue() {
+    public AudioResource getValue() {
         if (musicPicker != null) {
             int index = musicPicker.getValue();
-            return allBgMusicTracks[index];
+            return allBgMusic[index];
         }
         return null;
+    }
+
+    private void setDefaultValue() {
+        for (int idx = 0; idx < allBgMusicNames.length; idx++) {
+            String candidateName = allBgMusicNames[idx];
+            String configuredName = sessionConfig.getBgMusic().getName();
+
+            if (candidateName.equals(configuredName)) {
+                musicPicker.setValue(idx);
+                break;
+            }
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setDefaultValue();
     }
 }

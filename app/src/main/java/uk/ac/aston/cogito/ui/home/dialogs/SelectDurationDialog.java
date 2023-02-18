@@ -1,23 +1,19 @@
 package uk.ac.aston.cogito.ui.home.dialogs;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.Button;
 import android.widget.NumberPicker;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 import uk.ac.aston.cogito.R;
-import uk.ac.aston.cogito.ui.home.HomeFragment;
+import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public class SelectDurationDialog extends FormBottomDialog {
 
     private NumberPicker durationPicker;
 
-    public SelectDurationDialog(BottomDialogListener listener, @NonNull Context context) {
-        super(listener, context, R.layout.dialog_select_duration);
+    public SelectDurationDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
+        super(listener, context, sessionConfig, R.layout.dialog_select_duration);
     }
 
     @Override
@@ -26,7 +22,7 @@ public class SelectDurationDialog extends FormBottomDialog {
 
         durationPicker.setMinValue(1);
         durationPicker.setMaxValue(60);
-        durationPicker.setValue(HomeFragment._DEFAULT_DURATION);
+        durationPicker.setValue(sessionConfig.getDuration());
     }
 
     public Integer getValue() {
@@ -34,5 +30,11 @@ public class SelectDurationDialog extends FormBottomDialog {
             return durationPicker.getValue();
         }
         return null;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        durationPicker.setValue(sessionConfig.getDuration());
     }
 }

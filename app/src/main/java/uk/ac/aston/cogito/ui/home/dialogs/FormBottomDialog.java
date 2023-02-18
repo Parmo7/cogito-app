@@ -2,22 +2,24 @@ package uk.ac.aston.cogito.ui.home.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import uk.ac.aston.cogito.R;
+import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public abstract class FormBottomDialog extends BottomSheetDialog {
 
     protected final BottomDialogListener listener;
+    protected SessionConfig sessionConfig;
 
-    public FormBottomDialog(BottomDialogListener listener, @NonNull Context context, int layoutResId) {
+    public FormBottomDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig, int layoutResId) {
         super(context, R.style.AppBottomSheetDialogTheme);
         setContentView(layoutResId);
 
         this.listener = listener;
+        this.sessionConfig = sessionConfig;
     }
 
     @Override
