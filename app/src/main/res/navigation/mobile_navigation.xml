@@ -9,7 +9,12 @@
         android:id="@+id/navigation_home"
         android:name="uk.ac.aston.cogito.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_session"
+            app:destination="@id/session"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_saved"
@@ -27,4 +32,17 @@
         android:name="uk.ac.aston.cogito.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/session"
+        android:name="uk.ac.aston.cogito.ui.session.SessionFragment"
+        android:label="fragment_session"
+        tools:layout="@layout/fragment_session" >
+        <argument
+            android:name="sessionConfig"
+            app:argType="uk.ac.aston.cogito.model.SessionConfig" />
+        <action
+            android:id="@+id/action_session_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
 </navigation>

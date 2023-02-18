@@ -8,7 +8,7 @@
     <string name="title_settings">Settings</string>
 
 
-    <!-- Home page-->
+    <!-- **************** HOME PAGE ***************** -->
     <string name="home_subtitle">Configure your mindfulness session.</string>
     <string name="home_primary_btn">Start</string>
     <string name="home_secondary_btn">Save</string>
@@ -31,4 +31,15 @@
     <string name="dialog_music_title">Select Background Music</string>
     <string name="dialog_music_done_btn">Done</string>
     <string name="dialog_music_subtitle">Please choose a background music</string>
+
+
+    <!-- **************** SESSION PAGE ***************** -->
+    <string name="session_pause_btn">Pause session</string>
+    <string name="session_rewind_10_btn">10 sec</string>
+    <string name="session_forward_10_btn">10 sec</string>
+    <string name="session_continue_btn">Continue session</string>
+    <string name="session_end_btn">End session</string>
+    <string name="session_title">My Session</string>
+    <string name="session_subtitle">Use your headphones for a more immersive experience.</string>
+    <string name="session_timer">00:00</string>
 </resources>

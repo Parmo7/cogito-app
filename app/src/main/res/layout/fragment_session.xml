@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingBottom="24dp">
+
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_medium"
+            android:text="@string/session_title"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="44dp"
+            android:layout_height="4dp"
+            android:background="@drawable/blue_rounded_rectangle" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/readex_pro_light"
+        android:text="@string/session_subtitle"
+        android:textColor="@color/grey_2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_container" />
+
+    <ImageView
+        android:id="@+id/session_animated_circle"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:background="@drawable/round_shape"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="36dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:background="@drawable/round_shape"
+        android:backgroundTint="@color/blue_3"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="36dp">
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_medium"
+            android:text="@string/session_timer"
+            android:textColor="@color/blue_1"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <!-- BUTTONS SHOWN WHEN PLAYING -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@id/session_pause_btn"
+        tools:layout_editor_absoluteX="24dp">
+
+        <Button
+            android:id="@+id/session_rewind_btn"
+            style="@style/CogitoButton.Secondary"
+            android:layout_weight="1"
+            android:text="@string/session_rewind_10_btn"
+            app:icon="@drawable/ic_round_replay_24" />
+
+        <Button
+            android:id="@+id/session_forward_btn"
+            style="@style/CogitoButton.Secondary"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/session_forward_10_btn"
+            app:icon="@drawable/ic_custom_forward_media" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/session_pause_btn"
+        style="@style/CogitoButton.Primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/session_pause_btn"
+        app:icon="@drawable/ic_round_pause_24" />
+
+
+
+    <!-- BUTTONS SHOWN WHEN PAUSED -->
+    <Button
+        android:id="@+id/session_end_btn"
+        style="@style/CogitoButton.Secondary"
+        app:layout_constraintBottom_toTopOf="@id/session_continue_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="12dp"
+        android:text="@string/session_end_btn"
+        app:icon="@drawable/ic_round_close_24"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/session_continue_btn"
+        style="@style/CogitoButton.Primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/session_continue_btn"
+        app:icon="@drawable/ic_round_play_arrow_24"
+        android:visibility="gone"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

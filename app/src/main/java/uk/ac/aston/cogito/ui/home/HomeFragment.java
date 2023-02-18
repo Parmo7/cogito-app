@@ -9,12 +9,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentHomeBinding;
+import uk.ac.aston.cogito.model.SessionConfig;
 import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
 import uk.ac.aston.cogito.ui.home.dialogs.FormBottomDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.SelectDurationDialog;
@@ -32,8 +35,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -41,6 +43,15 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
         super.onViewCreated(view, savedInstanceState);
 
         initializeAllDialogSelectors();
+        binding.homePrimaryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HomeFragmentDirections.ActionNavigationHomeToSession action =
+                        HomeFragmentDirections.actionNavigationHomeToSession(new SessionConfig());
+                Navigation.findNavController(view)
+                        .navigate(action);
+            }
+        });
     }
 
     private void initializeAllDialogSelectors() {
