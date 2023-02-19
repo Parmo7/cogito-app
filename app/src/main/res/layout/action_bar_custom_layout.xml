@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="80dp"
+    android:layout_height="64dp"
     android:layout_width="match_parent"
     android:gravity="center_vertical"
-    android:padding="16dp"
+    android:paddingStart="16dp"
     android:paddingEnd="24dp"
     android:background="@color/white"
     android:elevation="40dp">
     
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/ic_launcher"/>
     
         <TextView

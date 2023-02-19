@@ -26,13 +26,14 @@
             <include
                 android:id="@+id/tool_bar"
                 layout="@layout/action_bar_custom_layout"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_width="match_parent" />
         </androidx.appcompat.widget.Toolbar>
 
         <View
+            android:id="@+id/toolbar_shadow"
             android:layout_width="match_parent"
-            android:layout_height="24dp"
+            android:layout_height="16dp"
             android:background="@drawable/toolbar_dropshadow"/>
     </LinearLayout>
 
