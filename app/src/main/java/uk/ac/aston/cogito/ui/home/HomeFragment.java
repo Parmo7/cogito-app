@@ -30,9 +30,11 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        currentConfig = new SessionConfig();
-        currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
-        currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
+        if (currentConfig == null) {
+            currentConfig = new SessionConfig();
+            currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
+            currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
+        }
 
         return binding.getRoot();
     }
@@ -82,7 +84,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
         } else if (dialog instanceof SelectMusicDialog) {
             AudioResource value = ((SelectMusicDialog) dialog).getValue();
-            getCurrentConfig().setBgMusic(value);
+            currentConfig.setBgMusic(value);
             binding.homeValueMusic.setText(value.getName());
 
         }
