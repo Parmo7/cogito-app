@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.ac.aston.cogito.CogitoApp;
 import uk.ac.aston.cogito.MainActivity;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 
@@ -23,7 +24,7 @@ public class ConfigsViewModel extends ViewModel {
         allConfigs = new MutableLiveData<>(new ArrayList<>());
         latestConfig = new MutableLiveData<>();
 
-        dataManager = DataManager.getInstance(MainActivity.getAppContext());
+        dataManager = DataManager.getInstance(CogitoApp.getAppContext());
 
         updateAllConfigs();
         updateLatestConfig();

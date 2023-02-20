@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 public class AudioResource implements Serializable {
 
-    private final String name;
-    private final int resId;
+    private String name;
+    private int resId;
+
+    public AudioResource() {}
 
     public AudioResource(String name, int resId) {
         this.name = name;
@@ -16,7 +18,15 @@ public class AudioResource implements Serializable {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getResId() {
         return resId;
+    }
+
+    public void setResId(int resId) {
+        this.resId = resId;
     }
 }

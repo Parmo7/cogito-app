@@ -1,6 +1,7 @@
 package uk.ac.aston.cogito.model;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import uk.ac.aston.cogito.CogitoApp;
 import uk.ac.aston.cogito.MainActivity;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 
@@ -116,7 +118,14 @@ public class DataManager {
 
         try {
             ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String json = objectWriter.writeValueAsString(allConfigs);
+            Object obj = null;
+            if (fileType == FileType.ALL_CONFIGS) {
+                obj = allConfigs;
+            } else if (fileType == FileType.LATEST_CONFIG) {
+                obj = latestConfig;
+            }
+
+            String json = objectWriter.writeValueAsString(obj);
 
             FileOutputStream fileOutputStream = context.openFileOutput(filename, Context.MODE_PRIVATE);
             fileOutputStream.write(json.getBytes());
@@ -152,12 +161,17 @@ public class DataManager {
                 allConfigs = new ArrayList<>(configs);
 
             } else if (fileType == FileType.LATEST_CONFIG) {
-                SessionConfig config = Arrays.asList(mapper.readValue(contents, SessionConfig[].class)).get(0);
+                if (contents != null) {
+                    SessionConfig config = mapper.readValue(contents, SessionConfig.class);
 
-                // Update the local copy of the config
-                latestConfig = config;
+                    // Update the local copy of the config
+                    latestConfig = config;
+                }
             }
 
+            fileInputStream.close();
+            inputStreamReader.close();
+            reader.close();
 
 
         } catch (FileNotFoundException e) {
@@ -173,7 +187,7 @@ public class DataManager {
     }
 
     private void showToast(String text) {
-        Toast toast = Toast.makeText(MainActivity.getAppContext(), text, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(CogitoApp.getAppContext(), text, Toast.LENGTH_SHORT);
         toast.show();
     }
 }

@@ -10,7 +10,7 @@ public class SessionConfig implements Serializable {
     public static final int DEFAULT_DURATION = 10;
     public static final AudioResource DEFAULT_BG_MUSIC = BackgroundMusicManager.getAllMusic().get(0);
 
-    private final int id;
+    private int id;
     private String name;
     private int duration;
     private AudioResource bgMusic;
@@ -25,6 +25,10 @@ public class SessionConfig implements Serializable {
         name = "";
         duration = DEFAULT_DURATION;
         bgMusic = DEFAULT_BG_MUSIC;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {

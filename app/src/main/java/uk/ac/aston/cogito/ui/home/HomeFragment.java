@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import uk.ac.aston.cogito.databinding.FragmentHomeBinding;
+import uk.ac.aston.cogito.model.ConfigsViewModel;
 import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
@@ -23,6 +26,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
     private FragmentHomeBinding binding;
     private SessionConfig currentConfig;
+    private ConfigsViewModel model;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -30,23 +34,27 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        if (currentConfig == null) {
-            currentConfig = new SessionConfig();
-            currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
-            currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
-        }
-
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initializeModel();
+
+        if (currentConfig == null) {
+            currentConfig = new SessionConfig();
+            currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
+            currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
+        }
+
 
         initializeAllDialogSelectors();
         binding.homePrimaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                model.setLatestConfig(currentConfig);
+
                 HomeFragmentDirections.ActionNavigationHomeToSession action =
                         HomeFragmentDirections.actionNavigationHomeToSession(currentConfig);
                 Navigation.findNavController(view)
@@ -94,7 +102,25 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
         return currentConfig;
     }
 
-    public void setCurrentConfig(SessionConfig currentConfig) {
-        this.currentConfig = currentConfig;
+    private void initializeModel() {
+        model = new ViewModelProvider(requireActivity()).get(ConfigsViewModel.class);
+
+        // Create the observer for the list of places, which will update the UI.
+        final Observer<SessionConfig> latestConfigObserver = new Observer<SessionConfig>() {
+            @Override
+            public void onChanged(@Nullable final SessionConfig config) {
+                if (config != null) {
+                    currentConfig = config;
+
+                    binding.homeValueDuration.setText(String.valueOf(currentConfig.getDuration()) + " min" );
+                    binding.homeValueMusic.setText(currentConfig.getBgMusic().getName());
+                }
+            }
+        };
+        model.getLatestConfig().observe(getViewLifecycleOwner(), latestConfigObserver);
+    }
+
+    private void log(String msg) {
+        Log.i("Parmi", msg);
     }
 }
