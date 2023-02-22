@@ -18,6 +18,7 @@ import uk.ac.aston.cogito.model.ConfigsViewModel;
 import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
+import uk.ac.aston.cogito.ui.home.dialogs.EnterNameDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.FormBottomDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.SelectDurationDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.SelectMusicDialog;
@@ -46,6 +47,11 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
             currentConfig = new SessionConfig();
             currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
             currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
+            binding.homeSecondaryBtn.setVisibility(View.VISIBLE);
+
+        } else {
+            boolean isSaveBtnVisible = currentConfig.getName().isEmpty();
+            setSaveBtnVisibility(isSaveBtnVisible);
         }
 
 
@@ -66,12 +72,15 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
     private void initializeAllDialogSelectors() {
         SelectDurationDialog selectDurationDialog = new SelectDurationDialog(this, getContext(), currentConfig);
         SelectMusicDialog selectMusicDialog = new SelectMusicDialog(this, getContext(), currentConfig);
+        EnterNameDialog enterNameDialog = new EnterNameDialog(this, getContext(), currentConfig);
+
 
         binding.homeValueDuration.setText(String.valueOf(currentConfig.getDuration()) + " min" );
         binding.homeValueMusic.setText(currentConfig.getBgMusic().getName());
 
         binding.homeSelectorDuration.setOnClickListener(v -> selectDurationDialog.show());
         binding.homeSelectorMusic.setOnClickListener(v -> selectMusicDialog.show());
+        binding.homeSecondaryBtn.setOnClickListener(v -> enterNameDialog.show());
     }
 
 
@@ -89,13 +98,29 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
             Integer value = ((SelectDurationDialog) dialog).getValue();
             currentConfig.setDuration(value);
             binding.homeValueDuration.setText(value.toString() + " min");
+            setSaveBtnVisibility(true);
+            model.setLatestConfig(currentConfig);
 
         } else if (dialog instanceof SelectMusicDialog) {
             AudioResource value = ((SelectMusicDialog) dialog).getValue();
             currentConfig.setBgMusic(value);
             binding.homeValueMusic.setText(value.getName());
+            setSaveBtnVisibility(true);
+            model.setLatestConfig(currentConfig);
 
+        } else if (dialog instanceof EnterNameDialog) {
+            String value = ((EnterNameDialog) dialog).getValue();
+            if (value != null && !value.isEmpty()) {
+                currentConfig.setName(value);
+                model.addConfig(currentConfig);
+                setSaveBtnVisibility(false);
+            }
         }
+    }
+
+    private void setSaveBtnVisibility(boolean isVisible) {
+        int visibilityId = isVisible? View.VISIBLE : View.GONE;
+        binding.homeSecondaryBtn.setVisibility(visibilityId);
     }
 
     public SessionConfig getCurrentConfig() {

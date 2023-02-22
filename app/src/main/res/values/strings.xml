@@ -32,6 +32,10 @@
     <string name="dialog_music_done_btn">Done</string>
     <string name="dialog_music_subtitle">Please choose a background music</string>
 
+    <string name="dialog_name_title">Name Configuration</string>
+    <string name="dialog_name_save_btn">Save</string>
+    <string name="dialog_name_subtitle">Please provide a name for your session configuration.</string>
+
 
     <!-- **************** SESSION PAGE ***************** -->
     <string name="session_pause_btn">Pause session</string>
