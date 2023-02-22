@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
             currentConfig = new SessionConfig();
             currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
             currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
-            binding.homeSecondaryBtn.setVisibility(View.VISIBLE);
+            binding.homeSaveBtn.setVisibility(View.VISIBLE);
 
         } else {
             boolean isSaveBtnVisible = currentConfig.getName().isEmpty();
@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
 
         initializeAllDialogSelectors();
-        binding.homePrimaryBtn.setOnClickListener(new View.OnClickListener() {
+        binding.homeStartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 model.setLatestConfig(currentConfig);
@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
         binding.homeSelectorDuration.setOnClickListener(v -> selectDurationDialog.show());
         binding.homeSelectorMusic.setOnClickListener(v -> selectMusicDialog.show());
-        binding.homeSecondaryBtn.setOnClickListener(v -> enterNameDialog.show());
+        binding.homeStartBtn.setOnClickListener(v -> enterNameDialog.show());
     }
 
 
@@ -95,23 +95,23 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
     public void onDoneBtnPressed(FormBottomDialog dialog) {
 
         if (dialog instanceof SelectDurationDialog) {
-            Integer value = ((SelectDurationDialog) dialog).getValue();
-            currentConfig.setDuration(value);
-            binding.homeValueDuration.setText(value.toString() + " min");
+            Integer duration = ((SelectDurationDialog) dialog).getValue();
+            currentConfig.setDuration(duration);
+            binding.homeValueDuration.setText(duration.toString() + " min");
             setSaveBtnVisibility(true);
             model.setLatestConfig(currentConfig);
 
         } else if (dialog instanceof SelectMusicDialog) {
-            AudioResource value = ((SelectMusicDialog) dialog).getValue();
-            currentConfig.setBgMusic(value);
-            binding.homeValueMusic.setText(value.getName());
+            AudioResource bgMusic = ((SelectMusicDialog) dialog).getValue();
+            currentConfig.setBgMusic(bgMusic);
+            binding.homeValueMusic.setText(bgMusic.getName());
             setSaveBtnVisibility(true);
             model.setLatestConfig(currentConfig);
 
         } else if (dialog instanceof EnterNameDialog) {
-            String value = ((EnterNameDialog) dialog).getValue();
-            if (value != null && !value.isEmpty()) {
-                currentConfig.setName(value);
+            String name = ((EnterNameDialog) dialog).getValue();
+            if (name != null && !name.isEmpty()) {
+                currentConfig.setName(name);
                 model.addConfig(currentConfig);
                 setSaveBtnVisibility(false);
             }
@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
     private void setSaveBtnVisibility(boolean isVisible) {
         int visibilityId = isVisible? View.VISIBLE : View.GONE;
-        binding.homeSecondaryBtn.setVisibility(visibilityId);
+        binding.homeStartBtn.setVisibility(visibilityId);
     }
 
     public SessionConfig getCurrentConfig() {
