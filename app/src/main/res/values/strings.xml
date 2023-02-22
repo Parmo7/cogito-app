@@ -37,6 +37,8 @@
     <string name="dialog_name_subtitle">Please provide a name for your session configuration.</string>
 
 
+
+
     <!-- **************** SESSION PAGE ***************** -->
     <string name="session_pause_btn">Pause session</string>
     <string name="session_rewind_10_btn">10 sec</string>
@@ -46,4 +48,10 @@
     <string name="session_title">My Session</string>
     <string name="session_subtitle">Use your headphones for a more immersive experience.</string>
     <string name="session_timer">00:00</string>
+
+
+
+
+    <!-- **************** SAVED PAGE ****************** -->
+    <string name="saved_add_btn">Add</string>
 </resources>

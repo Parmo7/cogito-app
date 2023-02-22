@@ -340,9 +340,9 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/home_start_btn"
+        android:id="@+id/home_save_btn"
         style="@style/CogitoButton.Secondary"
-        app:layout_constraintBottom_toTopOf="@id/home_save_btn"
+        app:layout_constraintBottom_toTopOf="@id/home_start_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="12dp"
@@ -350,7 +350,7 @@
         app:icon="@drawable/ic_outline_bookmark_border_24"/>
 
     <Button
-        android:id="@+id/home_save_btn"
+        android:id="@+id/home_start_btn"
         style="@style/CogitoButton.Primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

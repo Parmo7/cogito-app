@@ -13,11 +13,13 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
 
     protected final BottomDialogListener listener;
     protected SessionConfig sessionConfig;
+    protected Button doneBtn;
 
     public FormBottomDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig, int layoutResId) {
         super(context, R.style.AppBottomSheetDialogTheme);
         setContentView(layoutResId);
 
+        this.doneBtn = findViewById(R.id.done_btn);
         this.listener = listener;
         this.sessionConfig = sessionConfig;
     }
@@ -30,8 +32,6 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
     }
 
     protected void initializeDoneBtn() {
-        Button doneBtn = findViewById(R.id.done_btn);
-
         if (doneBtn != null) {
             doneBtn.setOnClickListener(view -> {
                 listener.onDoneBtnPressed(this);

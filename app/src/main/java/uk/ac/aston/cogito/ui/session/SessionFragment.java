@@ -162,6 +162,7 @@ public class SessionFragment extends Fragment {
         });
     }
 
+
     @Override
     public void onStop() {
         super.onStop();
@@ -170,6 +171,7 @@ public class SessionFragment extends Fragment {
         player.release();
         circleAnimation.cancel();
         navBar.setVisibility(View.VISIBLE);
+        binding = null;
     }
 
     private void setSessionState(SessionState requiredState) {

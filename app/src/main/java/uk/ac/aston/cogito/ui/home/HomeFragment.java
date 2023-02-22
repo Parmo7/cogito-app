@@ -43,18 +43,6 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
         super.onViewCreated(view, savedInstanceState);
         initializeModel();
 
-        if (currentConfig == null) {
-            currentConfig = new SessionConfig();
-            currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
-            currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
-            binding.homeSaveBtn.setVisibility(View.VISIBLE);
-
-        } else {
-            boolean isSaveBtnVisible = currentConfig.getName().isEmpty();
-            setSaveBtnVisibility(isSaveBtnVisible);
-        }
-
-
         initializeAllDialogSelectors();
         binding.homeStartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +68,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
         binding.homeSelectorDuration.setOnClickListener(v -> selectDurationDialog.show());
         binding.homeSelectorMusic.setOnClickListener(v -> selectMusicDialog.show());
-        binding.homeStartBtn.setOnClickListener(v -> enterNameDialog.show());
+        binding.homeSaveBtn.setOnClickListener(v -> enterNameDialog.show());
     }
 
 
@@ -93,9 +81,9 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
     @Override
     public void onDoneBtnPressed(FormBottomDialog dialog) {
-
         if (dialog instanceof SelectDurationDialog) {
             Integer duration = ((SelectDurationDialog) dialog).getValue();
+            resetConfig();
             currentConfig.setDuration(duration);
             binding.homeValueDuration.setText(duration.toString() + " min");
             setSaveBtnVisibility(true);
@@ -103,6 +91,7 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
         } else if (dialog instanceof SelectMusicDialog) {
             AudioResource bgMusic = ((SelectMusicDialog) dialog).getValue();
+            resetConfig();
             currentConfig.setBgMusic(bgMusic);
             binding.homeValueMusic.setText(bgMusic.getName());
             setSaveBtnVisibility(true);
@@ -112,15 +101,24 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
             String name = ((EnterNameDialog) dialog).getValue();
             if (name != null && !name.isEmpty()) {
                 currentConfig.setName(name);
+                model.setLatestConfig(currentConfig);
                 model.addConfig(currentConfig);
                 setSaveBtnVisibility(false);
             }
         }
     }
 
+    private void resetConfig() {
+        SessionConfig tmpConfig = currentConfig;
+
+        currentConfig = new SessionConfig();
+        currentConfig.setDuration(tmpConfig.getDuration());
+        currentConfig.setBgMusic(tmpConfig.getBgMusic());
+    }
+
     private void setSaveBtnVisibility(boolean isVisible) {
         int visibilityId = isVisible? View.VISIBLE : View.GONE;
-        binding.homeStartBtn.setVisibility(visibilityId);
+        binding.homeSaveBtn.setVisibility(visibilityId);
     }
 
     public SessionConfig getCurrentConfig() {
@@ -129,8 +127,19 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
     private void initializeModel() {
         model = new ViewModelProvider(requireActivity()).get(ConfigsViewModel.class);
+        currentConfig = model.getLatestConfig().getValue();
 
-        // Create the observer for the list of places, which will update the UI.
+        if (currentConfig == null) {
+            currentConfig = new SessionConfig();
+            currentConfig.setDuration(SessionConfig.DEFAULT_DURATION);
+            currentConfig.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
+            binding.homeSaveBtn.setVisibility(View.VISIBLE);
+
+        } else {
+            boolean isSaveBtnVisible = currentConfig.getName().isEmpty();
+            setSaveBtnVisibility(isSaveBtnVisible);
+        }
+
         final Observer<SessionConfig> latestConfigObserver = new Observer<SessionConfig>() {
             @Override
             public void onChanged(@Nullable final SessionConfig config) {

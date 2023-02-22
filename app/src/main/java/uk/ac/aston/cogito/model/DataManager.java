@@ -88,13 +88,18 @@ public class DataManager {
     }
 
     protected boolean addConfig(SessionConfig newConfig) {
-        SessionConfig existingConfig = findConfigById(newConfig.getId());
+
+        // TODO The following line has been commented out for the time being, because IDs are not
+        // always incremented for some reason. This results in the config not being saved.
+        // SessionConfig existingConfig = findConfigById(newConfig.getId());
+        SessionConfig existingConfig = null;
 
         // Only add the config if a config with the same ID does not exist already
         if (existingConfig == null) {
 
             allConfigs.add(newConfig);
             saveToMemory(FileType.ALL_CONFIGS);
+            showToast("Configuration saved.");
             return true;
         }
 

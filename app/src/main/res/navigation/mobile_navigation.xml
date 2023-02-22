@@ -20,7 +20,12 @@
         android:id="@+id/navigation_saved"
         android:name="uk.ac.aston.cogito.ui.saved.SavedFragment"
         android:label="@string/title_saved"
-        tools:layout="@layout/fragment_saved" />
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_navigation_saved_to_session"
+            app:destination="@id/session"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
