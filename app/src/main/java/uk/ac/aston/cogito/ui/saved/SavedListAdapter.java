@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,15 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.Save
             holder.config = config;
             holder.nameTextView.setText(config.getName());
             holder.durationTextView.setText(String.valueOf(config.getDuration()) + " min");
+
+            holder.configDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    model.setLatestConfig(config);
+
+                    Navigation.findNavController(view).navigate(SavedFragmentDirections.actionNavigationSavedToNavigationHome());
+                }
+            });
 
             holder.playBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -140,6 +150,7 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.Save
             final SavedListAdapter adapter;
             public SessionConfig config;
 
+            public LinearLayout configDetails;
             public final TextView nameTextView;
             public final TextView durationTextView;
             public final FrameLayout playBtn;
@@ -148,6 +159,7 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.Save
             public SavedViewHolder(@NonNull View itemView, SavedListAdapter adapter) {
                 super(itemView);
 
+                configDetails = itemView.findViewById(R.id.config_details);
                 nameTextView = itemView.findViewById(R.id.config_item_name);
                 durationTextView = itemView.findViewById(R.id.config_item_duration);
                 playBtn = itemView.findViewById(R.id.play_btn);

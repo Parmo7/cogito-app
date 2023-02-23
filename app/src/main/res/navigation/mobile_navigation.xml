@@ -25,6 +25,9 @@
             android:id="@+id/action_navigation_saved_to_session"
             app:destination="@id/session"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_navigation_saved_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 
     <fragment
