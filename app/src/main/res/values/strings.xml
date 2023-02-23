@@ -54,4 +54,9 @@
 
     <!-- **************** SAVED PAGE ****************** -->
     <string name="saved_add_btn">Add</string>
+    <string name="item_edit">Edit Configuration</string>
+    <string name="item_rename">Rename</string>
+    <string name="item_delete">Delete</string>
+
+
 </resources>
