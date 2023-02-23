@@ -6,7 +6,6 @@ import uk.ac.aston.cogito.model.BackgroundMusicManager;
 
 public class SessionConfig implements Serializable {
 
-    private static int _COUNT = 0;
     public static final int DEFAULT_DURATION = 10;
     public static final AudioResource DEFAULT_BG_MUSIC = BackgroundMusicManager.getAllMusic().get(0);
 
@@ -21,7 +20,6 @@ public class SessionConfig implements Serializable {
 
 
     public SessionConfig() {
-        id = _COUNT++;
         name = "";
         duration = DEFAULT_DURATION;
         bgMusic = DEFAULT_BG_MUSIC;
