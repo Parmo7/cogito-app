@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingBottom="16dp">
+
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_medium"
+            android:text="@string/configsettings_title_add"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="44dp"
+            android:layout_height="4dp"
+            android:background="@drawable/blue_rounded_rectangle" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/readex_pro_light"
+        android:text="@string/configsettings_subtitle_edit"
+        android:textColor="@color/grey_2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_container" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/configsettings_cancel_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ScrollViewSize"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
+
+            <!-- ************** Section: GENERAL **************** -->
+
+            <!-- Section Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/readex_pro_light"
+                android:textColor="@color/blue_2"
+                android:textSize="14sp"
+                android:text="@string/home_section_general"
+                android:textAllCaps="true"/>
+
+            <!-- Field: Duration -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/home_field_duration"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:id="@+id/configsettings_selector_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/configsettings_value_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/home_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: Background music -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/home_field_music"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:id="@+id/configsettings_selector_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/configsettings_value_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/home_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+
+            <!-- ************** Section: BELLS **************** -->
+            <!-- Section Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/readex_pro_light"
+                android:textSize="14sp"
+                android:textColor="@color/blue_2"
+                android:text="@string/home_section_bells"
+                android:textAllCaps="true"/>
+
+            <!-- Field: Start bell sound -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/home_field_start_bell"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:id="@+id/configsettings_selector_start_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/configsettings_value_start_bell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/home_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: End bell sound -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/home_field_end_bell"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:id="@+id/configsettings_selector_end_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/configsettings_value_end_bell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/home_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: Number of intermediate bells -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/home_field_num_intermediate_bells"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:id="@+id/configsettings_selector_num_intermediate_bells"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/configsettings_value_num_intermediate_bells"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/home_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: Intermediate bell sound -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/home_field_intermediate_bell"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:id="@+id/configsettings_selector_intermediate_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/configsettings_value_intermediate_bell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/home_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/configsettings_cancel_btn"
+        style="@style/CogitoButton.Secondary"
+        app:layout_constraintBottom_toTopOf="@id/configsettings_save_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="12dp"
+        android:text="@string/configsettings_cancel_btn"
+        app:icon="@drawable/ic_round_close_24"/>
+
+    <Button
+        android:id="@+id/configsettings_save_btn"
+        style="@style/CogitoButton.Primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/configsettings_save_btn"
+        app:icon="@drawable/ic_outline_bookmark_border_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

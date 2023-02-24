@@ -41,4 +41,8 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
     }
 
     protected abstract void initializeForm();
+
+    public SessionConfig getSessionConfig() {
+        return sessionConfig;
+    }
 }

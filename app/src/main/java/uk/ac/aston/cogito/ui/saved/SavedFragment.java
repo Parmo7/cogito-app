@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,6 +52,16 @@ public class SavedFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         // Give the RecyclerView a default layout manager.
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        binding.savedAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SavedFragmentDirections.ActionNavigationSavedToConfigSettingsFragment action =
+                        SavedFragmentDirections.actionNavigationSavedToConfigSettingsFragment();
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
     }
 
     private void initialiseModel() {

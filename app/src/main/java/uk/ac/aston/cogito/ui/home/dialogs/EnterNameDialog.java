@@ -22,6 +22,10 @@ public class EnterNameDialog extends FormBottomDialog {
     @Override
     protected void initializeForm() {
         nameEditText = findViewById(R.id.name_edit_text);
+        if (!sessionConfig.getName().isEmpty()) {
+            nameEditText.setText(sessionConfig.getName());
+        }
+
 
         nameEditText.addTextChangedListener(new TextWatcher() {
             @Override

@@ -81,6 +81,7 @@ public class DataManager {
 
             // and then save it to memory
             saveToMemory(FileType.ALL_CONFIGS);
+            showToast("Configuration updated.");
             return true;
         }
 

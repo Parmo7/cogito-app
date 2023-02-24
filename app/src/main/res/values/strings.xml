@@ -59,4 +59,15 @@
     <string name="item_delete">Delete</string>
 
 
+    <!-- **************** CONFIG SETTINGS PAGE ****************** -->
+    <string name="configsettings_title_add">New Configuration</string>
+    <string name="configsettings_title_edit">Edit</string>
+    <string name="configsettings_subtitle_add">Configure your new mindfulness session.</string>
+    <string name="configsettings_subtitle_edit">Edit your mindfulness session.</string>
+    <string name="configsettings_cancel_btn">Cancel</string>
+    <string name="configsettings_save_btn">Save</string>
+    <string name="delete_confirmation_title">Delete This Configuration?</string>
+    <string name="delete_confirmation_cancel">No, go back </string>
+    <string name="delete_confirmation_proceed">Yes, delete</string>
+
 </resources>

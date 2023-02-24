@@ -48,6 +48,7 @@ public class SessionFragment extends Fragment {
 
         // Inflate the layout for this fragment
         binding = FragmentSessionBinding.inflate(inflater, container, false);
+
         navBar = getActivity().findViewById(R.id.nav_view);
         config = SessionFragmentArgs.fromBundle(getArguments()).getSessionConfig();
 
@@ -58,6 +59,9 @@ public class SessionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navBar.setVisibility(View.GONE);
+        if (!config.getName().isEmpty()) {
+            binding.title.setText(config.getName());
+        }
 
         player = MediaPlayer.create(getContext(), config.getBgMusic().getResId());
         player.setLooping(true);

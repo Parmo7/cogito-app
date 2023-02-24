@@ -2,7 +2,9 @@ package uk.ac.aston.cogito.ui.saved;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,9 +30,16 @@ import java.util.List;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.ConfigsViewModel;
+import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
+import uk.ac.aston.cogito.ui.home.HomeFragmentDirections;
+import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
+import uk.ac.aston.cogito.ui.home.dialogs.EnterNameDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.FormBottomDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectDurationDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectMusicDialog;
 
-public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.SavedViewHolder> {
+public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.SavedViewHolder> implements BottomDialogListener {
 
         private List<SessionConfig> savedList;
         private final LayoutInflater inflater;
@@ -94,18 +104,35 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.Save
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()) {
+
                                 case R.id.edit:
                                     //handle menu1 click
-                                    Toast.makeText(view.getContext(), "EDIT", Toast.LENGTH_SHORT).show();
+                                    SavedFragmentDirections.ActionNavigationSavedToConfigSettingsFragment action =
+                                            SavedFragmentDirections.actionNavigationSavedToConfigSettingsFragment().setConfig(config);
+                                    Navigation.findNavController(view).navigate(action);
                                     return true;
+
                                 case R.id.rename:
-                                    Toast.makeText(view.getContext(), "RENAME", Toast.LENGTH_SHORT).show();
-                                    //handle menu2 click
+                                    EnterNameDialog enterNameDialog = new EnterNameDialog(SavedListAdapter.this, view.getContext(), config);
+                                    enterNameDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            String name = ((EnterNameDialog) dialog).getValue();
+                                            if (name != null && !name.isEmpty()) {
+                                                config.setName(name);
+                                                model.updateConfig(config);
+
+                                                Navigation.findNavController(view).navigate(R.id.navigation_saved);
+                                            }
+                                        }
+                                    });
+                                    enterNameDialog.show();
                                     return true;
+
                                 case R.id.delete:
-                                    Toast.makeText(view.getContext(), "DELETE", Toast.LENGTH_SHORT).show();
-                                    //handle menu2 click
+                                    showDeleteConfirmationDialog(view, config);
                                     return true;
+
                                 default:
                                     return false;
                             }
@@ -115,6 +142,40 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.Save
 
                 }
             });
+        }
+
+
+    private void showDeleteConfirmationDialog(View view, SessionConfig config) {
+        // Setup the alert dialog for the delete FAB
+        AlertDialog.Builder builder = new AlertDialog.Builder(inflater.getContext());
+        builder.setTitle(R.string.delete_confirmation_title);
+        builder.setMessage("Configuration '" + config.getName() + "' will be permanently deleted.");
+        builder.setPositiveButton(R.string.delete_confirmation_proceed, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Get the model to actually remove the place
+                model.removeConfig(config.getId());
+                // And, finally, let the user know.
+                Toast.makeText(inflater.getContext(), "Configuration successfully deleted.", Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+                Navigation.findNavController(view).navigate(R.id.navigation_saved);
+            }
+        });
+        builder.setNegativeButton(R.string.delete_confirmation_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // If the user selects "Cancel", dismiss the dialog.
+                dialog.cancel();
+            }
+        });
+
+        // Build the AlertDialog
+        AlertDialog deleteConfirmationDialog = builder.create();
+        deleteConfirmationDialog.show();
+    }
+
+        @Override
+        public void onDoneBtnPressed(FormBottomDialog dialog) {
+            // DO NOTHING;
         }
 
         private void displayIcons(PopupMenu popup) {
