@@ -19,32 +19,39 @@ import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentSessionBinding;
+import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public class SessionFragment extends Fragment {
 
-    private static final long SEEK_INTERVAL = 10 * 1000;     // 10 seconds
-
+    // High-level variables
     private BottomNavigationView navBar;
     private FragmentSessionBinding binding;
-
-    private enum SessionState {PLAYING, PAUSED};
-
-    private MediaPlayer player;
     private SessionConfig config;
 
+    // Variables relating to audio playback
+    private enum PlayerInstruction {INIT, RESUME, PAUSE, REWIND, FORWARD, RELEASE, TICK}
+    private MediaPlayer playerMusic;
+    private MediaPlayer playerBell;
+    private List<BellSchedule> bellSchedules;
+
+    // Variables relating to the management of the timer
+    private static final long SEEK_INTERVAL = 10 * 1000;     // 10 seconds
     private CountDownTimer timer;
     private long millisLeft;
 
+    // Other variables
     private ObjectAnimator circleAnimation;
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
         binding = FragmentSessionBinding.inflate(inflater, container, false);
@@ -52,118 +59,293 @@ public class SessionFragment extends Fragment {
         navBar = getActivity().findViewById(R.id.nav_view);
         config = SessionFragmentArgs.fromBundle(getArguments()).getSessionConfig();
 
+        //TODO for now, manually assign the bell sounds
+        config.setStartBellSound(new AudioResource("Chakra", R.raw.bell_chakra));
+        config.setEndBellSound(new AudioResource("Classic", R.raw.bell_classic));
+        config.setIntermediateBellSound(new AudioResource("Heavy", R.raw.bell_heavy));
+        config.setNumIntermediateBells(2);
+
         return binding.getRoot();
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navBar.setVisibility(View.GONE);
+
+        // Update the title and total duration
         if (!config.getName().isEmpty()) {
             binding.title.setText(config.getName());
         }
-
-        player = MediaPlayer.create(getContext(), config.getBgMusic().getResId());
-        player.setLooping(true);
-        player.setScreenOnWhilePlaying(true);
-        player.start();
-
         binding.totalTime.setText("/ " + String.format("%02d", config.getDuration()) + ":00");
-        timer = getNewTimer(getTotalDurationMillis());
-        timer.start();
 
+        // Configure the timer and the audio player
+        timer = createTimer(getTotalDurationMillis());
+        timer.start();
+        manageAudioPlayback(PlayerInstruction.INIT);
+
+        // Initialise the rest of the UI
         animateOuterCircle();
-        initializeButtons();
+        initButtons();
     }
 
-    private CountDownTimer getNewTimer(long timerDurationInMillis) {
+
+    private void initButtons() {
+        binding.sessionPauseBtn.setOnClickListener(v -> {
+            timer.cancel();
+
+            manageAudioPlayback(PlayerInstruction.PAUSE);
+
+            updateButtons(false);
+            circleAnimation.pause();
+        });
+
+        binding.sessionContinueBtn.setOnClickListener(v -> {
+            timer = createTimer(millisLeft);
+            timer.start();
+
+            manageAudioPlayback(PlayerInstruction.RESUME);
+
+            updateButtons(true);
+            circleAnimation.resume();
+        });
+
+        binding.sessionRewindBtn.setOnClickListener(v -> {
+            long seekPos = getElapsedTimeMillis() - SEEK_INTERVAL;
+            if (seekPos < 0) {
+                seekPos = 0;
+            }
+
+            timer.cancel();
+            timer = createTimer(getTotalDurationMillis() - seekPos);
+            timer.start();
+
+            manageAudioPlayback(PlayerInstruction.REWIND);
+        });
+
+        binding.sessionForwardBtn.setOnClickListener(v -> {
+            long seekPos = getElapsedTimeMillis() + SEEK_INTERVAL;
+            if (seekPos >= getTotalDurationMillis()) {
+                seekPos = getTotalDurationMillis() - 1000;
+            }
+
+            timer.cancel();
+            timer = createTimer(getTotalDurationMillis() - seekPos);
+            timer.start();
+
+            manageAudioPlayback(PlayerInstruction.FORWARD);
+        });
+
+        binding.sessionEndBtn.setOnClickListener(v -> {
+            manageAudioPlayback(PlayerInstruction.RELEASE);
+            NavHostFragment.findNavController(SessionFragment.this)
+                    .navigate(R.id.action_session_to_navigation_home);
+        });
+    }
+
+
+    private void updateButtons(boolean isPlaying) {
+        int pauseRewFwdBtnsVisibility = isPlaying? View.VISIBLE : View.INVISIBLE;
+        int countinueEndBtnsVisibility = !isPlaying? View.VISIBLE : View.INVISIBLE;
+
+        binding.sessionPauseBtn.setVisibility(pauseRewFwdBtnsVisibility);
+        binding.sessionRewindBtn.setVisibility(pauseRewFwdBtnsVisibility);
+        binding.sessionForwardBtn.setVisibility(pauseRewFwdBtnsVisibility);
+
+        binding.sessionContinueBtn.setVisibility(countinueEndBtnsVisibility);
+        binding.sessionEndBtn.setVisibility(countinueEndBtnsVisibility);
+    }
+
+
+    private CountDownTimer createTimer(long timerDurationInMillis) {
         return new CountDownTimer(timerDurationInMillis,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 millisLeft = millisUntilFinished;
 
-                long millisElapsed = getTotalDurationMillis() - millisUntilFinished;
-                @SuppressLint("DefaultLocale") String elapsedTime =
-                        String.format(
-                                "%02d:%02d",
-                                TimeUnit.MILLISECONDS.toMinutes(millisElapsed),
-                                TimeUnit.MILLISECONDS.toSeconds(millisElapsed) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisElapsed))
-                        );
-
+                // Update the text in the circle (i.e. elapsed time)
+                @SuppressLint("DefaultLocale") String elapsedTime = String.format(
+                        "%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(getElapsedTimeMillis()),
+                        TimeUnit.MILLISECONDS.toSeconds(getElapsedTimeMillis()) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(getElapsedTimeMillis())));
                 binding.elapsedTime.setText(elapsedTime);
+
+                // update audio playback
+                manageAudioPlayback(PlayerInstruction.TICK);
             }
 
             @Override
             public void onFinish() {
-                player.stop();
-                circleAnimation.pause();
+                manageAudioPlayback(PlayerInstruction.RELEASE);
+                circleAnimation.end();
             }
         };
     }
 
-    private void initializeButtons() {
-        binding.sessionPauseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player.pause();
-                circleAnimation.pause();
-                timer.cancel();
-                setSessionState(SessionState.PAUSED);
-            }
-        });
 
-        binding.sessionRewindBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                long seekPos = getElapsedTimeMillis() - SEEK_INTERVAL;
-                if (seekPos < 0) {
-                    seekPos = 0;
+    private void animateOuterCircle() {
+        ImageView outerCircle = binding.sessionAnimatedCircle;
+
+        circleAnimation = ObjectAnimator.ofPropertyValuesHolder(outerCircle,
+                PropertyValuesHolder.ofFloat("scaleX", 1.25f),
+                PropertyValuesHolder.ofFloat("scaleY", 1.25f));
+
+        circleAnimation.setDuration(5000);
+        circleAnimation.setRepeatCount(ObjectAnimator.INFINITE);
+        circleAnimation.setRepeatMode(ObjectAnimator.REVERSE);
+        circleAnimation.start();
+    }
+
+
+    private void manageAudioPlayback(SessionFragment.PlayerInstruction instruction) {
+        switch (instruction) {
+            case INIT:
+                if (config.getBgMusic().getResId() != 0) {
+                    playerMusic = MediaPlayer.create(getContext(), config.getBgMusic().getResId());
+                    playerMusic.setLooping(true);
+                    playerMusic.setScreenOnWhilePlaying(true);
+                    playerMusic.setVolume(0.1f, 0.1f);
+                    playerMusic.start();
                 }
 
-                player.seekTo((int) seekPos);
+                bellSchedules = new ArrayList<>();
 
-                timer.cancel();
-                timer = getNewTimer(getTotalDurationMillis() - seekPos);
-                timer.start();
-            }
-        });
+                // Start bell
+                if (config.getStartBellSound().getResId() != 0) {
+                    int audioResId = config.getStartBellSound().getResId();
+                    MediaPlayer mp = MediaPlayer.create(getContext(), audioResId);
+                    long startTime = 0;
+                    long endTime = startTime + mp.getDuration();
 
-        binding.sessionForwardBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                long seekPos = getElapsedTimeMillis() + SEEK_INTERVAL;
-                if (seekPos >= getTotalDurationMillis()) {
-                    seekPos = getTotalDurationMillis() - 1000;
+                    BellSchedule bs = new BellSchedule(audioResId, startTime, endTime);
+                    bellSchedules.add(bs);
                 }
 
-                player.seekTo((int) seekPos);
 
-                timer.cancel();
-                timer = getNewTimer(getTotalDurationMillis() - seekPos);
-                timer.start();
-            }
-        });
+                // Intermediate bells
+                if (config.getIntermediateBellSound().getResId() != 0
+                        && config.getNumIntermediateBells() > 0) {
+                    long intermediateBellsInterval = getTotalDurationMillis() / (config.getNumIntermediateBells() + 1);
+                    int audioResId = config.getIntermediateBellSound().getResId();
+                    MediaPlayer mp = MediaPlayer.create(getContext(), audioResId);
 
-        binding.sessionContinueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                player.start();
+                    long startTime = intermediateBellsInterval - 1000;
+                    long endTime;
 
-                timer = getNewTimer(millisLeft);
-                timer.start();
+                    do {
+                        endTime = startTime + mp.getDuration();
 
-                circleAnimation.resume();
-                setSessionState(SessionState.PLAYING);
-            }
-        });
+                        BellSchedule bs = new BellSchedule(audioResId, startTime, endTime);
+                        bellSchedules.add(bs);
 
-        binding.sessionEndBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(SessionFragment.this)
-                        .navigate(R.id.action_session_to_navigation_home);
-            }
-        });
+                        startTime += intermediateBellsInterval;
+                    } while (startTime < getTotalDurationMillis() - 30000);
+                }
+
+                // End bell
+                if (config.getEndBellSound().getResId() != 0) {
+                    int audioResId = config.getEndBellSound().getResId();
+                    MediaPlayer mp = MediaPlayer.create(getContext(), audioResId);
+                    long endTime = getTotalDurationMillis();
+                    long startTime = getTotalDurationMillis() - mp.getDuration();
+
+                    BellSchedule bss = new BellSchedule(audioResId, startTime, endTime);
+                    bellSchedules.add(bss);
+                }
+
+                break;
+
+            case TICK:
+
+                for (BellSchedule bss: bellSchedules) {
+                    if ((playerBell == null || !playerBell.isPlaying())
+                            && getElapsedTimeMillis() >= bss.getStartTimeMillis()
+                            && getElapsedTimeMillis() <= bss.getEndTimeMillis()) {
+
+                        long seekPos = getElapsedTimeMillis() - bss.getStartTimeMillis();
+                        playerBell = MediaPlayer.create(getContext(), bss.getAudioResId());
+                        playerBell.setVolume(1, 1);
+                        playerBell.seekTo((int) seekPos);
+                        playerBell.start();
+
+                    }
+                }
+
+                break;
+
+            case RESUME:
+                if (playerMusic != null) {
+                    playerMusic.start();
+                }
+                break;
+
+            case PAUSE:
+                if (playerMusic != null && playerMusic.isPlaying()) {
+                    playerMusic.pause();
+                }
+
+                if (playerBell != null && playerBell.isPlaying()) {
+                    playerBell.pause();
+                }
+
+                break;
+
+            case REWIND:
+                long seekPosRewind = getElapsedTimeMillis() - SEEK_INTERVAL;
+                if (seekPosRewind < 0) {
+                    seekPosRewind = 0;
+                }
+
+                if (playerMusic != null) {
+                    playerMusic.seekTo((int) seekPosRewind);
+                }
+                if (playerBell != null) {
+                    playerBell.stop();
+                    playerBell = null;
+                }
+
+                break;
+
+            case FORWARD:
+                long seekPosForward = getElapsedTimeMillis() + SEEK_INTERVAL;
+                if (seekPosForward >= getTotalDurationMillis()) {
+                    seekPosForward = getTotalDurationMillis() - 1000;
+                }
+
+                if (playerMusic != null) {
+                    playerMusic.seekTo((int) seekPosForward);
+                }
+                if (playerBell != null) {
+                    playerBell.stop();
+                    playerBell = null;
+                }
+
+                break;
+
+            case RELEASE:
+                if (playerMusic != null) {
+                    playerMusic.release();
+                }
+
+                if (playerBell != null) {
+                    playerBell.release();
+                }
+
+                break;
+        }
+    }
+
+    private long getTotalDurationMillis() {
+        return (long) config.getDuration() * 60 * 1000 + 1000;
+    }
+
+    private long getElapsedTimeMillis() {
+        return getTotalDurationMillis() - millisLeft;
+    }
+
+    private long getTimeLeftMillis() {
+        return millisLeft;
     }
 
 
@@ -171,54 +353,10 @@ public class SessionFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
-        player.stop();
-        player.release();
+        manageAudioPlayback(PlayerInstruction.RELEASE);
         circleAnimation.cancel();
         navBar.setVisibility(View.VISIBLE);
+
         binding = null;
-    }
-
-    private void setSessionState(SessionState requiredState) {
-
-        if (requiredState == SessionState.PAUSED) {
-            binding.sessionPauseBtn.setVisibility(View.INVISIBLE);
-            binding.sessionRewindBtn.setVisibility(View.INVISIBLE);
-            binding.sessionForwardBtn.setVisibility(View.INVISIBLE);
-
-            binding.sessionContinueBtn.setVisibility(View.VISIBLE);
-            binding.sessionEndBtn.setVisibility(View.VISIBLE);
-
-        } else {
-            binding.sessionPauseBtn.setVisibility(View.VISIBLE);
-            binding.sessionRewindBtn.setVisibility(View.VISIBLE);
-            binding.sessionForwardBtn.setVisibility(View.VISIBLE);
-
-            binding.sessionContinueBtn.setVisibility(View.INVISIBLE);
-            binding.sessionEndBtn.setVisibility(View.INVISIBLE);
-        }
-    }
-
-
-    private void animateOuterCircle() {
-        ImageView outerCircle = binding.sessionAnimatedCircle;
-
-        circleAnimation = ObjectAnimator.ofPropertyValuesHolder(
-                outerCircle,
-                PropertyValuesHolder.ofFloat("scaleX", 1.25f),
-                PropertyValuesHolder.ofFloat("scaleY", 1.25f));
-        circleAnimation.setDuration(5000);
-
-        circleAnimation.setRepeatCount(ObjectAnimator.INFINITE);
-        circleAnimation.setRepeatMode(ObjectAnimator.REVERSE);
-
-        circleAnimation.start();
-    }
-
-    private long getTotalDurationMillis() {
-        return config.getDuration() * 60 * 1000 + 1000;
-    }
-
-    private long getElapsedTimeMillis() {
-        return getTotalDurationMillis() - millisLeft;
     }
 }

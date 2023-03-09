@@ -1,5 +1,7 @@
 package uk.ac.aston.cogito.model;
 
+import android.provider.MediaStore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +10,15 @@ import uk.ac.aston.cogito.model.entities.AudioResource;
 
 public class BackgroundMusicManager {
 
+    private static final int NULL_RES_ID = 0;
+
     private static final AudioResource TRACK_1 = new AudioResource("Forest", R.raw.forest);
     private static final AudioResource TRACK_2 = new AudioResource("Piano", R.raw.piano);
     private static final AudioResource TRACK_3 = new AudioResource("River", R.raw.river);
     private static final AudioResource TRACK_4 = new AudioResource("Spa", R.raw.spa);
     private static final AudioResource TRACK_5 = new AudioResource("Zen", R.raw.zen);
+    private static final AudioResource TRACK_6 = new AudioResource("None", NULL_RES_ID);
+
 
     private static final List<AudioResource> BG_MUSIC_LIST = initializeBgMusicList();
 
@@ -25,6 +31,7 @@ public class BackgroundMusicManager {
         data.add(TRACK_3);
         data.add(TRACK_4);
         data.add(TRACK_5);
+        data.add(TRACK_6);
 
         return data;
     }
