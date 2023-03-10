@@ -12,8 +12,8 @@ public class SelectDurationDialog extends FormBottomDialog {
 
     private NumberPicker durationPicker;
 
-    public SelectDurationDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
-        super(listener, context, sessionConfig, R.layout.dialog_select_duration);
+    public SelectDurationDialog(BottomDialogListener listener, @NonNull Context context) {
+        super(listener, context, R.layout.dialog_select_duration);
     }
 
     @Override
@@ -22,7 +22,6 @@ public class SelectDurationDialog extends FormBottomDialog {
 
         durationPicker.setMinValue(1);
         durationPicker.setMaxValue(60);
-        durationPicker.setValue(sessionConfig.getDuration());
     }
 
     public Integer getValue() {
@@ -33,8 +32,8 @@ public class SelectDurationDialog extends FormBottomDialog {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    public void show(SessionConfig sessionConfig) {
+        super.show();
         durationPicker.setValue(sessionConfig.getDuration());
     }
 }

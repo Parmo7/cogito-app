@@ -63,13 +63,13 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
     }
 
     private void initializeAllDialogSelectors() {
-        SelectDurationDialog selectDurationDialog = new SelectDurationDialog(this, getContext(), currentConfig);
-        SelectMusicDialog selectMusicDialog = new SelectMusicDialog(this, getContext(), currentConfig);
-        EnterNameDialog enterNameDialog = new EnterNameDialog(this, getContext(), currentConfig);
-        SelectBellDialog selectStartBellDialog = new SelectStartBellDialog(this, getContext(), currentConfig);
-        SelectBellDialog selectEndBellDialog = new SelectEndBellDialog(this, getContext(), currentConfig);
-        SelectNumIntBellsDialog selectNumIntBellsDialog = new SelectNumIntBellsDialog(this, getContext(), currentConfig);
-        SelectBellDialog selectIntermediateBellDialog = new SelectIntermediateBellDialog(this, getContext(), currentConfig);
+        SelectDurationDialog selectDurationDialog = new SelectDurationDialog(this, getContext());
+        SelectMusicDialog selectMusicDialog = new SelectMusicDialog(this, getContext());
+        EnterNameDialog enterNameDialog = new EnterNameDialog(this, getContext());
+        SelectBellDialog selectStartBellDialog = new SelectStartBellDialog(this, getContext());
+        SelectBellDialog selectEndBellDialog = new SelectEndBellDialog(this, getContext());
+        SelectNumIntBellsDialog selectNumIntBellsDialog = new SelectNumIntBellsDialog(this, getContext());
+        SelectBellDialog selectIntermediateBellDialog = new SelectIntermediateBellDialog(this, getContext());
 
 
         binding.homeValueDuration.setText(currentConfig.getDuration() + " min" );
@@ -79,13 +79,13 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
         binding.homeValueNumIntermediateBells.setText(String.valueOf(currentConfig.getNumIntermediateBells()));
         binding.homeValueIntermediateBell.setText(currentConfig.getIntermediateBellSound().getName());
 
-        binding.homeSelectorDuration.setOnClickListener(v -> selectDurationDialog.show());
-        binding.homeSelectorMusic.setOnClickListener(v -> selectMusicDialog.show());
-        binding.homeSelectorStartBell.setOnClickListener(v -> selectStartBellDialog.show());
-        binding.homeSelectorEndBell.setOnClickListener(v -> selectEndBellDialog.show());
-        binding.homeSelectorNumIntermediateBells.setOnClickListener(v -> selectNumIntBellsDialog.show());
-        binding.homeSelectorIntermediateBell.setOnClickListener(v -> selectIntermediateBellDialog.show());
-        binding.homeSaveBtn.setOnClickListener(v -> enterNameDialog.show());
+        binding.homeSelectorDuration.setOnClickListener(v -> selectDurationDialog.show(currentConfig));
+        binding.homeSelectorMusic.setOnClickListener(v -> selectMusicDialog.show(currentConfig));
+        binding.homeSelectorStartBell.setOnClickListener(v -> selectStartBellDialog.show(currentConfig));
+        binding.homeSelectorEndBell.setOnClickListener(v -> selectEndBellDialog.show(currentConfig));
+        binding.homeSelectorNumIntermediateBells.setOnClickListener(v -> selectNumIntBellsDialog.show(currentConfig));
+        binding.homeSelectorIntermediateBell.setOnClickListener(v -> selectIntermediateBellDialog.show(currentConfig));
+        binding.homeSaveBtn.setOnClickListener(v -> enterNameDialog.show(currentConfig));
     }
 
 

@@ -12,8 +12,8 @@ public class SelectNumIntBellsDialog extends FormBottomDialog{
 
     private NumberPicker intermediateBellsPicker;
 
-    public SelectNumIntBellsDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
-        super(listener, context, sessionConfig, R.layout.dialog_num_intbells);
+    public SelectNumIntBellsDialog(BottomDialogListener listener, @NonNull Context context) {
+        super(listener, context, R.layout.dialog_num_intbells);
     }
 
     @Override
@@ -22,7 +22,6 @@ public class SelectNumIntBellsDialog extends FormBottomDialog{
 
         intermediateBellsPicker.setMinValue(0);
         intermediateBellsPicker.setMaxValue(29);
-        intermediateBellsPicker.setValue(sessionConfig.getNumIntermediateBells());
     }
 
     public Integer getValue() {
@@ -33,8 +32,8 @@ public class SelectNumIntBellsDialog extends FormBottomDialog{
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        intermediateBellsPicker.setValue(sessionConfig.getDuration());
+    public void show(SessionConfig sessionConfig) {
+        super.show();
+        intermediateBellsPicker.setValue(sessionConfig.getNumIntermediateBells());
     }
 }

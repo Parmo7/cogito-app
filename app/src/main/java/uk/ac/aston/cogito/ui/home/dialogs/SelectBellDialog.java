@@ -14,12 +14,12 @@ import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public abstract class SelectBellDialog extends FormBottomDialog {
 
-    private NumberPicker bellPicker;
-    private AudioResource[] allBellSounds;
-    private String[] alLBellSoundNames;
+    protected NumberPicker bellPicker;
+    protected AudioResource[] allBellSounds;
+    protected String[] alLBellSoundNames;
 
-    public SelectBellDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
-        super(listener, context, sessionConfig, R.layout.dialog_select_bell_sound);
+    public SelectBellDialog(BottomDialogListener listener, @NonNull Context context) {
+        super(listener, context, R.layout.dialog_select_bell_sound);
         allBellSounds = BellSoundManager.getAllBellsArray();
     }
 
@@ -48,9 +48,6 @@ public abstract class SelectBellDialog extends FormBottomDialog {
         bellPicker.setDisplayedValues(alLBellSoundNames);
         bellPicker.setMinValue(0);
         bellPicker.setMaxValue(alLBellSoundNames.length - 1);
-
-        // Set the default value of the picker based on current configuration
-        setDefaultValue();
     }
 
     public AudioResource getValue() {
@@ -59,26 +56,6 @@ public abstract class SelectBellDialog extends FormBottomDialog {
             return allBellSounds[index];
         }
         return null;
-    }
-
-    private void setDefaultValue() {
-        for (int idx = 0; idx < alLBellSoundNames.length; idx++) {
-            String candidateName = alLBellSoundNames[idx];
-            String bellSoundName = getBellSoundName();
-
-            if (candidateName.equals(bellSoundName)) {
-                bellPicker.setValue(idx);
-                break;
-            }
-        }
-    }
-
-    abstract String getBellSoundName();
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        setDefaultValue();
     }
 }
 

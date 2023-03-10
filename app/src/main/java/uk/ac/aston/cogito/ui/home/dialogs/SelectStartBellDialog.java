@@ -9,8 +9,8 @@ import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public class SelectStartBellDialog extends SelectBellDialog{
 
-    public SelectStartBellDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
-        super(listener, context, sessionConfig);
+    public SelectStartBellDialog(BottomDialogListener listener, @NonNull Context context) {
+        super(listener, context);
     }
 
     @Override
@@ -19,7 +19,16 @@ public class SelectStartBellDialog extends SelectBellDialog{
     }
 
     @Override
-    String getBellSoundName() {
-        return getSessionConfig().getStartBellSound().getName();
+    public void show(SessionConfig sessionConfig) {
+        super.show();
+        for (int idx = 0; idx < alLBellSoundNames.length; idx++) {
+            String candidateName = alLBellSoundNames[idx];
+            String bellSoundName = sessionConfig.getStartBellSound().getName();
+
+            if (candidateName.equals(bellSoundName)) {
+                bellPicker.setValue(idx);
+                break;
+            }
+        }
     }
 }

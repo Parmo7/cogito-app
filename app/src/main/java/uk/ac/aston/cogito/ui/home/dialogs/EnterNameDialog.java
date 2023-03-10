@@ -15,17 +15,13 @@ public class EnterNameDialog extends FormBottomDialog {
 
     private EditText nameEditText;
 
-    public EnterNameDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
-        super(listener, context, sessionConfig, R.layout.dialog_enter_name);
+    public EnterNameDialog(BottomDialogListener listener, @NonNull Context context) {
+        super(listener, context, R.layout.dialog_enter_name);
     }
 
     @Override
     protected void initializeForm() {
         nameEditText = findViewById(R.id.name_edit_text);
-        if (!sessionConfig.getName().isEmpty()) {
-            nameEditText.setText(sessionConfig.getName());
-        }
-
 
         nameEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -57,7 +53,10 @@ public class EnterNameDialog extends FormBottomDialog {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    public void show(SessionConfig sessionConfig) {
+        super.show();
+        if (!sessionConfig.getName().isEmpty()) {
+            nameEditText.setText(sessionConfig.getName());
+        }
     }
 }

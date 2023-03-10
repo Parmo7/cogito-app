@@ -113,7 +113,7 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.Save
                                     return true;
 
                                 case R.id.rename:
-                                    EnterNameDialog enterNameDialog = new EnterNameDialog(SavedListAdapter.this, view.getContext(), config);
+                                    EnterNameDialog enterNameDialog = new EnterNameDialog(SavedListAdapter.this, view.getContext());
                                     enterNameDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                                         @Override
                                         public void onDismiss(DialogInterface dialog) {
@@ -126,7 +126,7 @@ public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.Save
                                             }
                                         }
                                     });
-                                    enterNameDialog.show();
+                                    enterNameDialog.show(config);
                                     return true;
 
                                 case R.id.delete:

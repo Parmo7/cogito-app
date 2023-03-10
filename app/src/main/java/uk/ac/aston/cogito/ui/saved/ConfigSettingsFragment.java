@@ -81,8 +81,8 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
                 // If this is a new configuration
                 if (config.getName().isEmpty()) {
                     // show the enter-name dialog
-                    EnterNameDialog enterNameDialog = new EnterNameDialog(ConfigSettingsFragment.this, getContext(), config);
-                    enterNameDialog.show();
+                    EnterNameDialog enterNameDialog = new EnterNameDialog(ConfigSettingsFragment.this, getContext());
+                    enterNameDialog.show(config);
 
                 } else {
                     model.updateConfig(config);
@@ -93,16 +93,16 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
     }
 
     private void initialiseForm() {
-        SelectDurationDialog selectDurationDialog = new SelectDurationDialog(this, getContext(), config);
-        SelectMusicDialog selectMusicDialog = new SelectMusicDialog(this, getContext(), config);
-        EnterNameDialog enterNameDialog = new EnterNameDialog(this, getContext(), config);
+        SelectDurationDialog selectDurationDialog = new SelectDurationDialog(this, getContext());
+        SelectMusicDialog selectMusicDialog = new SelectMusicDialog(this, getContext());
+        EnterNameDialog enterNameDialog = new EnterNameDialog(this, getContext());
 
 
         binding.configsettingsValueDuration.setText(String.valueOf(config.getDuration()) + " min" );
         binding.configsettingsValueMusic.setText(config.getBgMusic().getName());
 
-        binding.configsettingsSelectorDuration.setOnClickListener(v -> selectDurationDialog.show());
-        binding.configsettingsSelectorMusic.setOnClickListener(v -> selectMusicDialog.show());
+        binding.configsettingsSelectorDuration.setOnClickListener(v -> selectDurationDialog.show(config));
+        binding.configsettingsSelectorMusic.setOnClickListener(v -> selectMusicDialog.show(config));
     }
 
     private void navigateBack(View view) {

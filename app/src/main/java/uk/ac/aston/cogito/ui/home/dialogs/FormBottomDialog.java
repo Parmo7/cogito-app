@@ -12,16 +12,14 @@ import uk.ac.aston.cogito.model.entities.SessionConfig;
 public abstract class FormBottomDialog extends BottomSheetDialog {
 
     protected final BottomDialogListener listener;
-    protected SessionConfig sessionConfig;
     protected Button doneBtn;
 
-    public FormBottomDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig, int layoutResId) {
+    public FormBottomDialog(BottomDialogListener listener, @NonNull Context context, int layoutResId) {
         super(context, R.style.AppBottomSheetDialogTheme);
         setContentView(layoutResId);
 
         this.doneBtn = findViewById(R.id.done_btn);
         this.listener = listener;
-        this.sessionConfig = sessionConfig;
     }
 
     @Override
@@ -42,7 +40,5 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
 
     protected abstract void initializeForm();
 
-    public SessionConfig getSessionConfig() {
-        return sessionConfig;
-    }
+    public abstract void show(SessionConfig sessionConfig);
 }

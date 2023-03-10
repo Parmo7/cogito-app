@@ -19,8 +19,8 @@ public class SelectMusicDialog extends FormBottomDialog {
     private AudioResource[] allBgMusic;
     private String[] allBgMusicNames;
 
-    public SelectMusicDialog(BottomDialogListener listener, @NonNull Context context, SessionConfig sessionConfig) {
-        super(listener, context, sessionConfig, R.layout.dialog_select_bg_music);
+    public SelectMusicDialog(BottomDialogListener listener, @NonNull Context context) {
+        super(listener, context, R.layout.dialog_select_bg_music);
 
         allBgMusic = BackgroundMusicManager.getAllMusicArray();
     }
@@ -39,9 +39,6 @@ public class SelectMusicDialog extends FormBottomDialog {
         musicPicker.setDisplayedValues(allBgMusicNames);
         musicPicker.setMinValue(0);
         musicPicker.setMaxValue(allBgMusicNames.length - 1);
-
-        // Set the default value of the picker based on current configuration
-        setDefaultValue();
     }
 
     public AudioResource getValue() {
@@ -52,7 +49,9 @@ public class SelectMusicDialog extends FormBottomDialog {
         return null;
     }
 
-    private void setDefaultValue() {
+    @Override
+    public void show(SessionConfig sessionConfig) {
+        super.show();
         for (int idx = 0; idx < allBgMusicNames.length; idx++) {
             String candidateName = allBgMusicNames[idx];
             String configuredName = sessionConfig.getBgMusic().getName();
@@ -62,11 +61,5 @@ public class SelectMusicDialog extends FormBottomDialog {
                 break;
             }
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        setDefaultValue();
     }
 }
