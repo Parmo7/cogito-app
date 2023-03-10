@@ -3,11 +3,19 @@ package uk.ac.aston.cogito.model.entities;
 import java.io.Serializable;
 
 import uk.ac.aston.cogito.model.BackgroundMusicManager;
+import uk.ac.aston.cogito.model.BellSoundManager;
 
 public class SessionConfig implements Serializable {
 
     public static final int DEFAULT_DURATION = 10;
-    public static final AudioResource DEFAULT_BG_MUSIC = BackgroundMusicManager.getAllMusic().get(0);
+    public static final AudioResource DEFAULT_BG_MUSIC = BackgroundMusicManager.DEFAULT_BG_MUSIC;
+
+    public static final AudioResource DEFAULT_START_BELL = BellSoundManager.DEFAULT_START_BELL;
+    public static final AudioResource DEFAULT_END_BELL = BellSoundManager.DEFAULT_END_BELL;
+
+    public static final int DEFAULT_NUM_INTERMEDIATE_BELLS = 1;
+    public static final AudioResource DEFAULT_INTERMEDIATE_BELL = BellSoundManager.DEFAULT_INTERMEDIATE_BELL;
+
 
     private int id;
     private String name;
@@ -23,6 +31,10 @@ public class SessionConfig implements Serializable {
         name = "";
         duration = DEFAULT_DURATION;
         bgMusic = DEFAULT_BG_MUSIC;
+        startBellSound = DEFAULT_START_BELL;
+        endBellSound = DEFAULT_END_BELL;
+        numIntermediateBells = DEFAULT_NUM_INTERMEDIATE_BELLS;
+        intermediateBellSound = DEFAULT_INTERMEDIATE_BELL;
     }
 
     public void setId(int id) {

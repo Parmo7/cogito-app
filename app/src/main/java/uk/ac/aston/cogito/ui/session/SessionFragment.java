@@ -59,12 +59,6 @@ public class SessionFragment extends Fragment {
         navBar = getActivity().findViewById(R.id.nav_view);
         config = SessionFragmentArgs.fromBundle(getArguments()).getSessionConfig();
 
-        //TODO for now, manually assign the bell sounds
-        config.setStartBellSound(new AudioResource("Chakra", R.raw.bell_chakra));
-        config.setEndBellSound(new AudioResource("Classic", R.raw.bell_classic));
-        config.setIntermediateBellSound(new AudioResource("Heavy", R.raw.bell_heavy));
-        config.setNumIntermediateBells(2);
-
         return binding.getRoot();
     }
 

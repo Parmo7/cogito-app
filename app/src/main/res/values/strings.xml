@@ -36,7 +36,15 @@
     <string name="dialog_name_save_btn">Save</string>
     <string name="dialog_name_subtitle">Please provide a name for your session configuration.</string>
 
+    <string name="dialog_bell_start_title">Select Start Bell Sound</string>
+    <string name="dialog_bell_intermediate_title">Select Intermediate Bell Sound</string>
+    <string name="dialog_bell_end_title">Select End Bell Sound</string>
+    <string name="dialog_bell_done_btn">Done</string>
+    <string name="dialog_bell_subtitle">Please choose a bell sound.</string>
 
+    <string name="dialog_num_intbells_title">Set Intermediate Bells</string>
+    <string name="dialog_num_intbells_done_btn">Done</string>
+    <string name="dialog_num_intbells_subtitle">Please set the desired number of intermediate bells. The value should be smaller than the duration of the session.</string>
 
 
     <!-- **************** SESSION PAGE ***************** -->

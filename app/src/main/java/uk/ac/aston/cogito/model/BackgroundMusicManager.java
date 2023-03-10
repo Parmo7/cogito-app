@@ -18,6 +18,7 @@ public class BackgroundMusicManager {
     private static final AudioResource TRACK_4 = new AudioResource("Spa", R.raw.spa);
     private static final AudioResource TRACK_5 = new AudioResource("Zen", R.raw.zen);
     private static final AudioResource TRACK_6 = new AudioResource("None", NULL_RES_ID);
+    public static final AudioResource DEFAULT_BG_MUSIC = TRACK_1;
 
 
     private static final List<AudioResource> BG_MUSIC_LIST = initializeBgMusicList();
