@@ -22,8 +22,13 @@ import uk.ac.aston.cogito.model.entities.SessionConfig;
 import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
 import uk.ac.aston.cogito.ui.home.dialogs.EnterNameDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.FormBottomDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectBellDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.SelectDurationDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectEndBellDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectIntermediateBellDialog;
 import uk.ac.aston.cogito.ui.home.dialogs.SelectMusicDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectNumIntBellsDialog;
+import uk.ac.aston.cogito.ui.home.dialogs.SelectStartBellDialog;
 import uk.ac.aston.cogito.ui.session.SessionFragmentArgs;
 
 public class ConfigSettingsFragment extends Fragment implements BottomDialogListener {
@@ -51,8 +56,6 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
 
         if (config == null) {
             config = new SessionConfig();
-            config.setDuration(SessionConfig.DEFAULT_DURATION);
-            config.setBgMusic(SessionConfig.DEFAULT_BG_MUSIC);
 
             // Set the title and subtitle
             binding.title.setText(R.string.configsettings_title_add);
@@ -95,14 +98,24 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
     private void initialiseForm() {
         SelectDurationDialog selectDurationDialog = new SelectDurationDialog(this, getContext());
         SelectMusicDialog selectMusicDialog = new SelectMusicDialog(this, getContext());
-        EnterNameDialog enterNameDialog = new EnterNameDialog(this, getContext());
+        SelectBellDialog selectStartBellDialog = new SelectStartBellDialog(this, getContext());
+        SelectBellDialog selectEndBellDialog = new SelectEndBellDialog(this, getContext());
+        SelectNumIntBellsDialog selectNumIntBellsDialog = new SelectNumIntBellsDialog(this, getContext());
+        SelectBellDialog selectIntermediateBellDialog = new SelectIntermediateBellDialog(this, getContext());
 
-
-        binding.configsettingsValueDuration.setText(String.valueOf(config.getDuration()) + " min" );
+        binding.configsettingsValueDuration.setText(config.getDuration() + " min" );
         binding.configsettingsValueMusic.setText(config.getBgMusic().getName());
-
+        binding.configsettingsValueStartBell.setText(config.getStartBellSound().getName());
+        binding.configsettingsValueEndBell.setText(config.getEndBellSound().getName());
+        binding.configsettingsValueNumIntermediateBells.setText(String.valueOf(config.getNumIntermediateBells()));
+        binding.configsettingsValueIntermediateBell.setText(config.getIntermediateBellSound().getName());
+        
         binding.configsettingsSelectorDuration.setOnClickListener(v -> selectDurationDialog.show(config));
         binding.configsettingsSelectorMusic.setOnClickListener(v -> selectMusicDialog.show(config));
+        binding.configsettingsSelectorStartBell.setOnClickListener(v -> selectStartBellDialog.show(config));
+        binding.configsettingsSelectorEndBell.setOnClickListener(v -> selectEndBellDialog.show(config));
+        binding.configsettingsSelectorNumIntermediateBells.setOnClickListener(v -> selectNumIntBellsDialog.show(config));
+        binding.configsettingsSelectorIntermediateBell.setOnClickListener(v -> selectIntermediateBellDialog.show(config));
     }
 
     private void navigateBack(View view) {
@@ -130,6 +143,27 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
                 model.addConfig(config);
                 navigateBack(getView());
             }
+
+        } else if (dialog instanceof SelectStartBellDialog) {
+            AudioResource startBell = ((SelectStartBellDialog) dialog).getValue();
+            config.setStartBellSound(startBell);
+            binding.configsettingsValueStartBell.setText(startBell.getName());
+
+        } else if (dialog instanceof SelectEndBellDialog) {
+            AudioResource endBell = ((SelectEndBellDialog) dialog).getValue();
+            config.setEndBellSound(endBell);
+            binding.configsettingsValueEndBell.setText(endBell.getName());
+
+        } else if (dialog instanceof SelectNumIntBellsDialog) {
+            Integer numIntermediateBells = ((SelectNumIntBellsDialog) dialog).getValue();
+            config.setNumIntermediateBells(numIntermediateBells);
+            binding.configsettingsValueNumIntermediateBells.setText(numIntermediateBells.toString());
+
+        } else if (dialog instanceof SelectIntermediateBellDialog) {
+            AudioResource intermediateBell = ((SelectIntermediateBellDialog) dialog).getValue();
+            config.setIntermediateBellSound(intermediateBell);
+            binding.configsettingsValueIntermediateBell.setText(intermediateBell.getName());
+
         }
     }
 
