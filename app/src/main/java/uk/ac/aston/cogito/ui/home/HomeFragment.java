@@ -1,5 +1,7 @@
 package uk.ac.aston.cogito.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +15,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentHomeBinding;
+import uk.ac.aston.cogito.model.BellSoundManager;
 import uk.ac.aston.cogito.model.ConfigsViewModel;
 import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
@@ -52,12 +56,16 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
         binding.homeStartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model.setLatestConfig(currentConfig);
+                if (currentConfig.getNumIntermediateBells() > currentConfig.getDuration() - 1) {
+                    showValidationFailedDialog(v);
+                } else {
+                    model.setLatestConfig(currentConfig);
 
-                HomeFragmentDirections.ActionNavigationHomeToSession action =
-                        HomeFragmentDirections.actionNavigationHomeToSession(currentConfig);
-                Navigation.findNavController(view)
-                        .navigate(action);
+                    HomeFragmentDirections.ActionNavigationHomeToSession action =
+                            HomeFragmentDirections.actionNavigationHomeToSession(currentConfig);
+                    Navigation.findNavController(view)
+                            .navigate(action);
+                }
             }
         });
     }
@@ -85,7 +93,14 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
         binding.homeSelectorEndBell.setOnClickListener(v -> selectEndBellDialog.show(currentConfig));
         binding.homeSelectorNumIntermediateBells.setOnClickListener(v -> selectNumIntBellsDialog.show(currentConfig));
         binding.homeSelectorIntermediateBell.setOnClickListener(v -> selectIntermediateBellDialog.show(currentConfig));
-        binding.homeSaveBtn.setOnClickListener(v -> enterNameDialog.show(currentConfig));
+
+        binding.homeSaveBtn.setOnClickListener(v -> {
+            if (currentConfig.getNumIntermediateBells() > currentConfig.getDuration() - 1) {
+                showValidationFailedDialog(v);
+            } else {
+                enterNameDialog.show(currentConfig);
+            }
+        });
     }
 
 
@@ -144,6 +159,9 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
             resetConfig();
             currentConfig.setNumIntermediateBells(numIntermediateBells);
             binding.homeValueNumIntermediateBells.setText(numIntermediateBells.toString());
+
+            updateIntermediateBellSound();
+
             setSaveBtnVisibility(true);
             model.setLatestConfig(currentConfig);
 
@@ -203,6 +221,8 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
                     binding.homeValueEndBell.setText(currentConfig.getEndBellSound().getName());
                     binding.homeValueNumIntermediateBells.setText(String.valueOf(currentConfig.getNumIntermediateBells()));
                     binding.homeValueIntermediateBell.setText(currentConfig.getIntermediateBellSound().getName());
+
+                    updateIntermediateBellSound();
                 }
             }
         };
@@ -211,5 +231,32 @@ public class HomeFragment extends Fragment implements BottomDialogListener {
 
     private void log(String msg) {
         Log.i("Parmi", msg);
+    }
+
+    private void updateIntermediateBellSound() {
+        // Disable field 'Intermediate Bell Sound' if needed
+        if (currentConfig.getNumIntermediateBells() == 0) {
+            binding.homeSelectorIntermediateBell.setClickable(false);
+            currentConfig.setIntermediateBellSound(BellSoundManager.BELL_NULL);
+            binding.homeValueIntermediateBell.setText(BellSoundManager.BELL_NULL.getName());
+            binding.homeValueIntermediateBell.setTextColor(getResources().getColor(R.color.grey_2, null));
+            binding.homeArrowIntermediateBell.setColorFilter(getResources().getColor(R.color.grey_2, null));
+
+        } else {
+            binding.homeSelectorIntermediateBell.setClickable(true);
+            binding.homeValueIntermediateBell.setTextColor(getResources().getColor(R.color.blue_2, null));
+            binding.homeArrowIntermediateBell.setColorFilter(getResources().getColor(R.color.blue_2, null));
+        }
+    }
+
+    private void showValidationFailedDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.validation_failed_title);
+        builder.setMessage(R.string.validation_failed_message);
+        builder.setPositiveButton(R.string.validation_failed_fix, (dialog, id) -> dialog.cancel());
+
+        // Build the AlertDialog
+        AlertDialog validationFailedDialog = builder.create();
+        validationFailedDialog.show();
     }
 }

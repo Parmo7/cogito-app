@@ -1,5 +1,6 @@
 package uk.ac.aston.cogito.ui.saved;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentConfigSettingsBinding;
 import uk.ac.aston.cogito.databinding.FragmentSessionBinding;
+import uk.ac.aston.cogito.model.BellSoundManager;
 import uk.ac.aston.cogito.model.ConfigsViewModel;
 import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
@@ -81,15 +83,20 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
         binding.configsettingsSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // If this is a new configuration
-                if (config.getName().isEmpty()) {
-                    // show the enter-name dialog
-                    EnterNameDialog enterNameDialog = new EnterNameDialog(ConfigSettingsFragment.this, getContext());
-                    enterNameDialog.show(config);
+                if (config.getNumIntermediateBells() > config.getDuration() - 1) {
+                    showValidationFailedDialog(v);
 
                 } else {
-                    model.updateConfig(config);
-                    navigateBack(v);
+                    // If this is a new configuration
+                    if (config.getName().isEmpty()) {
+                        // show the enter-name dialog
+                        EnterNameDialog enterNameDialog = new EnterNameDialog(ConfigSettingsFragment.this, getContext());
+                        enterNameDialog.show(config);
+
+                    } else {
+                        model.updateConfig(config);
+                        navigateBack(v);
+                    }
                 }
             }
         });
@@ -116,6 +123,8 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
         binding.configsettingsSelectorEndBell.setOnClickListener(v -> selectEndBellDialog.show(config));
         binding.configsettingsSelectorNumIntermediateBells.setOnClickListener(v -> selectNumIntBellsDialog.show(config));
         binding.configsettingsSelectorIntermediateBell.setOnClickListener(v -> selectIntermediateBellDialog.show(config));
+        
+        updateIntermediateBellSound();
     }
 
     private void navigateBack(View view) {
@@ -158,6 +167,7 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
             Integer numIntermediateBells = ((SelectNumIntBellsDialog) dialog).getValue();
             config.setNumIntermediateBells(numIntermediateBells);
             binding.configsettingsValueNumIntermediateBells.setText(numIntermediateBells.toString());
+            updateIntermediateBellSound();
 
         } else if (dialog instanceof SelectIntermediateBellDialog) {
             AudioResource intermediateBell = ((SelectIntermediateBellDialog) dialog).getValue();
@@ -171,5 +181,32 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
     public void onDestroy() {
         super.onDestroy();
         binding = null;
+    }
+
+    private void updateIntermediateBellSound() {
+        // Disable field 'Intermediate Bell Sound' if needed
+        if (config.getNumIntermediateBells() == 0) {
+            binding.configsettingsSelectorIntermediateBell.setClickable(false);
+            config.setIntermediateBellSound(BellSoundManager.BELL_NULL);
+            binding.configsettingsValueIntermediateBell.setText(BellSoundManager.BELL_NULL.getName());
+            binding.configsettingsValueIntermediateBell.setTextColor(getResources().getColor(R.color.grey_2, null));
+            binding.configsettingsArrowIntermediateBell.setColorFilter(getResources().getColor(R.color.grey_2, null));
+
+        } else {
+            binding.configsettingsSelectorIntermediateBell.setClickable(true);
+            binding.configsettingsValueIntermediateBell.setTextColor(getResources().getColor(R.color.blue_2, null));
+            binding.configsettingsArrowIntermediateBell.setColorFilter(getResources().getColor(R.color.blue_2, null));
+        }
+    }
+
+    private void showValidationFailedDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.validation_failed_title);
+        builder.setMessage(R.string.validation_failed_message);
+        builder.setPositiveButton(R.string.validation_failed_fix, (dialog, id) -> dialog.cancel());
+
+        // Build the AlertDialog
+        AlertDialog validationFailedDialog = builder.create();
+        validationFailedDialog.show();
     }
 }

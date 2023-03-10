@@ -19,6 +19,7 @@ public class BellSoundManager {
     public static final AudioResource DEFAULT_START_BELL = BELL_2;
     public static final AudioResource DEFAULT_END_BELL = BELL_2;
     public static final AudioResource DEFAULT_INTERMEDIATE_BELL = BELL_5;
+    public static final AudioResource BELL_NULL = BELL_6;
 
     private static final List<AudioResource> BELLS_LIST = initBellsList();
 

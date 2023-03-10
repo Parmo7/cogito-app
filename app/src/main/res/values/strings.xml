@@ -75,7 +75,12 @@
     <string name="configsettings_cancel_btn">Cancel</string>
     <string name="configsettings_save_btn">Save</string>
     <string name="delete_confirmation_title">Delete This Configuration?</string>
-    <string name="delete_confirmation_cancel">No, go back </string>
-    <string name="delete_confirmation_proceed">Yes, delete</string>
+    <string name="delete_confirmation_cancel">No, go back.</string>
+    <string name="delete_confirmation_proceed">Yes, delete.</string>
 
+
+    <!-- **************** FORM VALIDATION DIALOG ****************** -->
+    <string name="validation_failed_title">Too Many Intermediate Bells</string>
+    <string name="validation_failed_message">The number of intermediate bells should be smaller than the overall duration of the session.</string>
+    <string name="validation_failed_fix">Ok, I will change it.</string>
 </resources>
