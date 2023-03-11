@@ -45,7 +45,7 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
 
         // Inflate the layout for this fragment
         binding = FragmentConfigSettingsBinding.inflate(inflater, container, false);
-        config = ConfigSettingsFragmentArgs.fromBundle(getArguments()).getConfig();
+        config = cloneSessionConfig();
 
         return binding.getRoot();
     }
@@ -208,5 +208,28 @@ public class ConfigSettingsFragment extends Fragment implements BottomDialogList
         // Build the AlertDialog
         AlertDialog validationFailedDialog = builder.create();
         validationFailedDialog.show();
+    }
+
+    private SessionConfig cloneSessionConfig() {
+        SessionConfig original = ConfigSettingsFragmentArgs.fromBundle(getArguments()).getConfig();
+
+        if (original != null) {
+            SessionConfig clone = new SessionConfig();
+
+            clone.setId(original.getId());
+            clone.setName(original.getName());
+
+            clone.setDuration(original.getDuration());
+            clone.setBgMusic(original.getBgMusic());
+
+            clone.setStartBellSound(original.getStartBellSound());
+            clone.setEndBellSound(original.getEndBellSound());
+            clone.setNumIntermediateBells(original.getNumIntermediateBells());
+            clone.setIntermediateBellSound(original.getIntermediateBellSound());
+
+            return clone;
+        }
+
+        return null;
     }
 }
