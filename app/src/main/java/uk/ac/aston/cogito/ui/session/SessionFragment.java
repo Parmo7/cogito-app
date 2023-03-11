@@ -173,6 +173,9 @@ public class SessionFragment extends Fragment {
             public void onFinish() {
                 manageAudioPlayback(PlayerInstruction.RELEASE);
                 circleAnimation.end();
+
+                NavHostFragment.findNavController(SessionFragment.this)
+                        .navigate(R.id.action_session_to_checkInFragment);
             }
         };
     }

@@ -55,6 +55,9 @@
             android:id="@+id/action_session_to_navigation_home"
             app:destination="@id/navigation_home"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_session_to_checkInFragment"
+            app:destination="@id/checkInFragment" />
     </fragment>
     <fragment
         android:id="@+id/configSettingsFragment"
@@ -68,5 +71,14 @@
             app:argType="uk.ac.aston.cogito.model.entities.SessionConfig"
             app:nullable="true"
             android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkInFragment"
+        android:name="uk.ac.aston.cogito.ui.session.CheckInFragment"
+        android:label="fragment_check_in"
+        tools:layout="@layout/fragment_check_in" >
+        <argument
+            android:name="sessionConfig"
+            app:argType="uk.ac.aston.cogito.model.entities.SessionConfig" />
     </fragment>
 </navigation>

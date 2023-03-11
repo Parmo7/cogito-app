@@ -58,8 +58,6 @@
     <string name="session_timer">00:00</string>
 
 
-
-
     <!-- **************** SAVED PAGE ****************** -->
     <string name="saved_add_btn">Add</string>
     <string name="item_edit">Edit Configuration</string>
@@ -83,4 +81,23 @@
     <string name="validation_failed_title">Too Many Intermediate Bells</string>
     <string name="validation_failed_message">The number of intermediate bells should be smaller than the overall duration of the session.</string>
     <string name="validation_failed_fix">Ok, I will change it.</string>
+
+
+    <!-- **************** CHECK-IN PAGE ****************** -->
+    <string name="checkin_title">How are you?</string>
+    <string name="checkin_subtitle">How are you feeling now? Keeping track of mood improves self-regulation.</string>
+    <string name="checkin_submit_btn">Submit</string>
+    <string name="checkin_skip_btn">Skip</string>
+
+    <string name="mood_happy">Happy</string>
+    <string name="mood_grateful">Grateful</string>
+    <string name="mood_inlove">In Love</string>
+    <string name="mood_curious">Curious</string>
+    <string name="mood_sad">Sad</string>
+    <string name="mood_hurt">Hurt</string>
+    <string name="mood_anxious">Anxious</string>
+    <string name="mood_sleepy">Sleepy</string>
+    <string name="mood_sick">Sick</string>
+    <string name="mood_apathetic">Apathetic</string>x
+    <string name="mood_exhausted">Exhausted</string>
 </resources>
