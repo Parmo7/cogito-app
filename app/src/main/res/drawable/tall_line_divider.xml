@@ -10,7 +10,7 @@
                 android:width="0dp"/>
 
             <solid
-                android:color="@color/blue_4"/>
+                android:color="#E4E4E4"/>
         </shape>
     </item>
 </layer-list>
