@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.CountDownTimer;
@@ -25,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentSessionBinding;
-import uk.ac.aston.cogito.model.entities.AudioResource;
+import uk.ac.aston.cogito.model.HistoryViewModel;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public class SessionFragment extends Fragment {
@@ -174,8 +175,17 @@ public class SessionFragment extends Fragment {
                 manageAudioPlayback(PlayerInstruction.RELEASE);
                 circleAnimation.end();
 
-                NavHostFragment.findNavController(SessionFragment.this)
-                        .navigate(R.id.action_session_to_checkInFragment);
+                HistoryViewModel model = new ViewModelProvider(requireActivity()).get(HistoryViewModel.class);
+                model.recordTodaySession();
+
+                if (model.isDailyCheckInDone()) {
+                    NavHostFragment.findNavController(SessionFragment.this)
+                            .navigate(R.id.action_session_to_navigation_home);
+
+                } else {
+                    NavHostFragment.findNavController(SessionFragment.this)
+                            .navigate(R.id.action_session_to_checkInFragment);
+                }
             }
         };
     }

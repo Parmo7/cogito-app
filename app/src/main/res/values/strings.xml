@@ -85,7 +85,7 @@
 
     <!-- **************** CHECK-IN PAGE ****************** -->
     <string name="checkin_title">How are you?</string>
-    <string name="checkin_subtitle">How are you feeling now? Keeping track of mood improves self-regulation.</string>
+    <string name="checkin_subtitle">How are you feeling today? Keeping track of mood improves self-regulation.</string>
     <string name="checkin_submit_btn">Submit</string>
     <string name="checkin_skip_btn">Skip</string>
 

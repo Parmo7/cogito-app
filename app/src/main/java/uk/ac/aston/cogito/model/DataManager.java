@@ -19,7 +19,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 import uk.ac.aston.cogito.CogitoApp;
-import uk.ac.aston.cogito.MainActivity;
+import uk.ac.aston.cogito.model.entities.DayRecord;
+import uk.ac.aston.cogito.model.entities.Mood;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public class DataManager {
@@ -27,6 +28,7 @@ public class DataManager {
     private enum FileType {
         ALL_CONFIGS,
         LATEST_CONFIG,
+        HISTORY,
         APP_SETTINGS
     }
 
@@ -35,12 +37,16 @@ public class DataManager {
     private List<SessionConfig> allConfigs;
     private SessionConfig latestConfig;
 
+    private List<DayRecord> history;
+
     private DataManager(Context context) {
         this.context = context;
-        allConfigs = new ArrayList<SessionConfig>();
+        allConfigs = new ArrayList<>();
+        history = new ArrayList<>();
 
         retrieveFromMemory(FileType.ALL_CONFIGS);
         retrieveFromMemory(FileType.LATEST_CONFIG);
+        retrieveFromMemory(FileType.HISTORY);
     }
 
     protected static DataManager getInstance(Context context) {
@@ -56,6 +62,10 @@ public class DataManager {
 
     protected SessionConfig getLatestConfig() {
         return latestConfig;
+    }
+
+    protected List<DayRecord> getUpToDateHistory() {
+        return history;
     }
 
     private SessionConfig findConfigById(int id) {
@@ -134,10 +144,18 @@ public class DataManager {
         try {
             ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
             Object obj = null;
-            if (fileType == FileType.ALL_CONFIGS) {
-                obj = allConfigs;
-            } else if (fileType == FileType.LATEST_CONFIG) {
-                obj = latestConfig;
+            switch (fileType) {
+                case ALL_CONFIGS:
+                    obj = allConfigs;
+                    break;
+
+                case LATEST_CONFIG:
+                    obj = latestConfig;
+                    break;
+
+                case HISTORY:
+                    obj = history;
+                    break;
             }
 
             String json = objectWriter.writeValueAsString(obj);
@@ -147,7 +165,7 @@ public class DataManager {
             fileOutputStream.close();
 
         } catch (Exception e) {
-            showToast("Could not save your configurations");
+            showToast("Error while saving your data...");
         }
     }
 
@@ -169,19 +187,21 @@ public class DataManager {
             String contents = stringBuilder.toString();
             ObjectMapper mapper = new ObjectMapper();
 
-            if (fileType == FileType.ALL_CONFIGS) {
-                List<SessionConfig> configs = Arrays.asList(mapper.readValue(contents, SessionConfig[].class));
+            switch (fileType) {
+                case ALL_CONFIGS:
+                    // Update the local copy of the config list
+                    allConfigs = Arrays.asList(mapper.readValue(contents, SessionConfig[].class));
+                    break;
 
-                // Update the local copy of the config list
-                allConfigs = new ArrayList<>(configs);
-
-            } else if (fileType == FileType.LATEST_CONFIG) {
-                if (contents != null) {
-                    SessionConfig config = mapper.readValue(contents, SessionConfig.class);
-
+                case LATEST_CONFIG:
                     // Update the local copy of the config
-                    latestConfig = config;
-                }
+                    latestConfig = mapper.readValue(contents, SessionConfig.class);
+                    break;
+
+                case HISTORY:
+                    // Update the local copy of the history
+                    history = Arrays.asList(mapper.readValue(contents, DayRecord[].class));
+                    break;
             }
 
             fileInputStream.close();
@@ -192,7 +212,7 @@ public class DataManager {
         } catch (FileNotFoundException e) {
             // Do nothing, i.e. there is no backup to retrieve.
         } catch (IOException e) {
-            showToast("Could not retrieve your configurations");
+            showToast("Could not retrieve your data");
         }
     }
 
@@ -200,6 +220,55 @@ public class DataManager {
         this.latestConfig = latestConfig;
         saveToMemory(FileType.LATEST_CONFIG);
     }
+
+
+    protected DayRecord findDayRecordByDate(String date) {
+        for (DayRecord candidateRecord : history) {
+            if (candidateRecord.getDate().equals(date)) {
+                return candidateRecord;
+            }
+        }
+
+        return null;
+    }
+
+
+    protected void recordSession(String date) {
+        DayRecord existingDayRecord = findDayRecordByDate(date);
+
+        // If a day record exists in the database...
+        if (existingDayRecord != null) {
+            int updatedNumSessions = existingDayRecord.getNumSessions() + 1;
+            existingDayRecord.setNumSessions(updatedNumSessions);
+
+        // ... else, create one
+        } else {
+            DayRecord newRecord = new DayRecord(date, 1, null);
+            history.add(newRecord);
+        }
+
+        saveToMemory(FileType.HISTORY);
+    }
+
+
+    protected void recordMood(String date, Mood mood) {
+        DayRecord existingDayRecord = findDayRecordByDate(date);
+
+        // If a day record exists in the database...
+        if (existingDayRecord != null) {
+            existingDayRecord.setMood(mood);
+
+        // ... else, create one
+        } else {
+            DayRecord newRecord = new DayRecord();
+            newRecord.setDate(date);
+            newRecord.setMood(mood);
+            history.add(newRecord);
+        }
+
+        saveToMemory(FileType.HISTORY);
+    }
+
 
     private void showToast(String text) {
         Toast toast = Toast.makeText(CogitoApp.getAppContext(), text, Toast.LENGTH_SHORT);

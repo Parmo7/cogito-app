@@ -77,8 +77,8 @@
         android:name="uk.ac.aston.cogito.ui.session.CheckInFragment"
         android:label="fragment_check_in"
         tools:layout="@layout/fragment_check_in" >
-        <argument
-            android:name="sessionConfig"
-            app:argType="uk.ac.aston.cogito.model.entities.SessionConfig" />
+        <action
+            android:id="@+id/action_checkInFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 </navigation>
