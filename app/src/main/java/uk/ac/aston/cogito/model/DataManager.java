@@ -190,7 +190,7 @@ public class DataManager {
             switch (fileType) {
                 case ALL_CONFIGS:
                     // Update the local copy of the config list
-                    allConfigs = Arrays.asList(mapper.readValue(contents, SessionConfig[].class));
+                    allConfigs = new ArrayList<>(Arrays.asList(mapper.readValue(contents, SessionConfig[].class)));
                     break;
 
                 case LATEST_CONFIG:
@@ -200,7 +200,7 @@ public class DataManager {
 
                 case HISTORY:
                     // Update the local copy of the history
-                    history = Arrays.asList(mapper.readValue(contents, DayRecord[].class));
+                    history = new ArrayList<>(Arrays.asList(mapper.readValue(contents, DayRecord[].class)));
                     break;
             }
 
