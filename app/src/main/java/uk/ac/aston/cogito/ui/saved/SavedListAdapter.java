@@ -1,7 +1,6 @@
 package uk.ac.aston.cogito.ui.saved;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,14 +27,10 @@ import java.util.List;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.ConfigsViewModel;
-import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
-import uk.ac.aston.cogito.ui.home.HomeFragmentDirections;
-import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
-import uk.ac.aston.cogito.ui.home.dialogs.EnterNameDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.FormBottomDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectDurationDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectMusicDialog;
+import uk.ac.aston.cogito.ui.dialogs.BottomDialogListener;
+import uk.ac.aston.cogito.ui.dialogs.EnterNameDialog;
+import uk.ac.aston.cogito.ui.dialogs.FormBottomDialog;
 
 public class SavedListAdapter extends RecyclerView.Adapter<SavedListAdapter.SavedViewHolder> implements BottomDialogListener {
 

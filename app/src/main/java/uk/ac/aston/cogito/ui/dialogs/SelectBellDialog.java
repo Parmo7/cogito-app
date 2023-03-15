@@ -1,4 +1,4 @@
-package uk.ac.aston.cogito.ui.home.dialogs;
+package uk.ac.aston.cogito.ui.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.BellSoundManager;
 import uk.ac.aston.cogito.model.entities.AudioResource;
-import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public abstract class SelectBellDialog extends FormBottomDialog {
 

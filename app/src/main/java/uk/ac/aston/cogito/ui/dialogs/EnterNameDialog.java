@@ -1,9 +1,8 @@
-package uk.ac.aston.cogito.ui.home.dialogs;
+package uk.ac.aston.cogito.ui.dialogs;
 
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;

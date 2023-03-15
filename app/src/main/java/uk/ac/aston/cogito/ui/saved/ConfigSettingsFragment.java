@@ -16,22 +16,20 @@ import android.view.ViewGroup;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentConfigSettingsBinding;
-import uk.ac.aston.cogito.databinding.FragmentSessionBinding;
 import uk.ac.aston.cogito.model.BellSoundManager;
 import uk.ac.aston.cogito.model.ConfigsViewModel;
 import uk.ac.aston.cogito.model.entities.AudioResource;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
-import uk.ac.aston.cogito.ui.home.dialogs.BottomDialogListener;
-import uk.ac.aston.cogito.ui.home.dialogs.EnterNameDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.FormBottomDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectBellDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectDurationDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectEndBellDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectIntermediateBellDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectMusicDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectNumIntBellsDialog;
-import uk.ac.aston.cogito.ui.home.dialogs.SelectStartBellDialog;
-import uk.ac.aston.cogito.ui.session.SessionFragmentArgs;
+import uk.ac.aston.cogito.ui.dialogs.BottomDialogListener;
+import uk.ac.aston.cogito.ui.dialogs.EnterNameDialog;
+import uk.ac.aston.cogito.ui.dialogs.FormBottomDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectBellDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectDurationDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectEndBellDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectIntermediateBellDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectMusicDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectNumIntBellsDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectStartBellDialog;
 
 public class ConfigSettingsFragment extends Fragment implements BottomDialogListener {
 

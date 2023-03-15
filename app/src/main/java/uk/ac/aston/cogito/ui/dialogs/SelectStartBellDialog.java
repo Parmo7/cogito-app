@@ -1,4 +1,4 @@
-package uk.ac.aston.cogito.ui.home.dialogs;
+package uk.ac.aston.cogito.ui.dialogs;
 
 import android.content.Context;
 
@@ -7,15 +7,15 @@ import androidx.annotation.NonNull;
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
 
-public class SelectIntermediateBellDialog extends SelectBellDialog {
+public class SelectStartBellDialog extends SelectBellDialog{
 
-    public SelectIntermediateBellDialog(BottomDialogListener listener, @NonNull Context context) {
+    public SelectStartBellDialog(BottomDialogListener listener, @NonNull Context context) {
         super(listener, context);
     }
 
     @Override
     int getTitleResId() {
-        return R.string.dialog_bell_intermediate_title;
+        return R.string.dialog_bell_start_title;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class SelectIntermediateBellDialog extends SelectBellDialog {
         super.show();
         for (int idx = 0; idx < alLBellSoundNames.length; idx++) {
             String candidateName = alLBellSoundNames[idx];
-            String bellSoundName = sessionConfig.getIntermediateBellSound().getName();
+            String bellSoundName = sessionConfig.getStartBellSound().getName();
 
             if (candidateName.equals(bellSoundName)) {
                 bellPicker.setValue(idx);

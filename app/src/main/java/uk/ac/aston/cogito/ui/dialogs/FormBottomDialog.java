@@ -1,4 +1,4 @@
-package uk.ac.aston.cogito.ui.home.dialogs;
+package uk.ac.aston.cogito.ui.dialogs;
 
 import android.content.Context;
 import android.os.Bundle;

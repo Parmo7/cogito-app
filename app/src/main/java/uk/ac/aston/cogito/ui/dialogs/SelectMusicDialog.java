@@ -1,12 +1,10 @@
-package uk.ac.aston.cogito.ui.home.dialogs;
+package uk.ac.aston.cogito.ui.dialogs;
 
 
 import android.content.Context;
 import android.widget.NumberPicker;
 
 import androidx.annotation.NonNull;
-
-import java.util.stream.Stream;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.BackgroundMusicManager;
