@@ -67,5 +67,13 @@
         <item name="android:background">@drawable/shape_bottom_dialog</item>
     </style>
 
+    <style name="ChipCustomStyle" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/chip_background_color</item>
+        <item name="android:textColor">@color/chip_text_color</item>
+        <item name="chipIconVisible">true</item>
+        <item name="chipStartPadding">12dp</item>
+        <item name="chipEndPadding">12dp</item>
+        <item name="chipMinTouchTargetSize">28dp</item>
+    </style>
 
 </resources>

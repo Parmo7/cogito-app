@@ -6,16 +6,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,10 +28,16 @@ import java.util.List;
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentHistoryBinding;
 import uk.ac.aston.cogito.model.HistoryViewModel;
+import uk.ac.aston.cogito.model.MoodManager;
 import uk.ac.aston.cogito.model.entities.DayRecord;
 import uk.ac.aston.cogito.model.entities.Mood;
+import uk.ac.aston.cogito.ui.dialogs.BottomDialogListener;
+import uk.ac.aston.cogito.ui.dialogs.FormBottomDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectDurationDialog;
+import uk.ac.aston.cogito.ui.dialogs.SelectMoodDialog;
+import uk.ac.aston.cogito.ui.session.CheckInFragment;
 
-public class HistoryFragment extends Fragment {
+public class HistoryFragment extends Fragment implements BottomDialogListener {
 
     private FragmentHistoryBinding binding;
     private HistoryViewModel model;
@@ -82,6 +91,7 @@ public class HistoryFragment extends Fragment {
 
         } catch (Exception ignored) {}
 
+        // Update the fields at the bottom UI for the currently selected date (i.e. today)
         Calendar today = calendarView.getFirstSelectedDate();
         updateBottomUI(today);
 
@@ -90,6 +100,22 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onDayClick(EventDay eventDay) {
                 updateBottomUI(eventDay.getCalendar());
+            }
+
+        });
+
+        // If the mood selector is pressed, open a bottom dialog
+        binding.historySelectorMood.setOnClickListener(v -> {
+
+            Date selectedDate = calendarView.getFirstSelectedDate().getTime();
+            String selectedDateString = SESSION_DATE_FORMAT.format(selectedDate);
+
+            for (DayRecord dayRecord : model.getAllHistory().getValue()) {
+                if (selectedDateString.equals(dayRecord.getDate())) {
+                    SelectMoodDialog dialog = new SelectMoodDialog(this, getContext() );
+                    dialog.show(dayRecord);
+                    break;
+                }
             }
         });
     }
@@ -146,5 +172,17 @@ public class HistoryFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+
+    @Override
+    public void onDoneBtnPressed(FormBottomDialog dialog) {
+        if (dialog instanceof SelectMoodDialog) {
+            String chipName = ((SelectMoodDialog) dialog).getValue();
+            Mood associatedMood = MoodManager.getMoodByName(chipName);
+            model.recordTodayMood(associatedMood);
+
+            Toast.makeText(getContext(), "Check-in updated.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

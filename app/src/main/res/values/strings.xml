@@ -100,6 +100,7 @@
     <string name="mood_sick">Sick</string>
     <string name="mood_apathetic">Apathetic</string>x
     <string name="mood_exhausted">Exhausted</string>
+    <string name="mood_none">None</string>
 
 
     <!-- **************** HOME PAGE ***************** -->
@@ -107,4 +108,9 @@
     <string name="history_field_num_sessions">Mindful Moments</string>
     <string name="history_field_mood">Daily Check-in</string>
     <string name="history_value_not_set">Not Set</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_mood_title">Daily Check-In</string>
+    <string name="dialog_mood_done_btn">Done</string>
+    <string name="dialog_mood_subtitle">Keeping track of mood improves self-regulation.</string>
 </resources>
