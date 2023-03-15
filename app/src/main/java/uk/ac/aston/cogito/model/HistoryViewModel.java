@@ -16,6 +16,7 @@ import java.util.List;
 import uk.ac.aston.cogito.CogitoApp;
 import uk.ac.aston.cogito.model.entities.DayRecord;
 import uk.ac.aston.cogito.model.entities.Mood;
+import uk.ac.aston.cogito.model.entities.SessionConfig;
 
 public class HistoryViewModel extends ViewModel {
 
@@ -75,5 +76,9 @@ public class HistoryViewModel extends ViewModel {
 
     private void updateHistory() {
         history.setValue(dataManager.getUpToDateHistory());
+    }
+
+    public LiveData<List<DayRecord>> getAllHistory() {
+        return history;
     }
 }

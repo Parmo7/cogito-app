@@ -61,4 +61,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.10.1'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.10.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.1'
+
+    // Calendar
+    implementation 'com.applandeo:material-calendar-view:1.9.0-rc03'
 }

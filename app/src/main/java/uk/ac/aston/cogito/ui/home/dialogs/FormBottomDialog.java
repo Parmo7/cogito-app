@@ -16,7 +16,7 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
 
     public FormBottomDialog(BottomDialogListener listener, @NonNull Context context, int layoutResId) {
         super(context, R.style.AppBottomSheetDialogTheme);
-        setContentView(layoutResId);
+        super.setContentView(layoutResId);
 
         this.doneBtn = findViewById(R.id.done_btn);
         this.listener = listener;

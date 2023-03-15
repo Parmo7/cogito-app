@@ -100,4 +100,11 @@
     <string name="mood_sick">Sick</string>
     <string name="mood_apathetic">Apathetic</string>x
     <string name="mood_exhausted">Exhausted</string>
+
+
+    <!-- **************** HOME PAGE ***************** -->
+    <string name="history_section_date">dd/MM/YYYY</string>
+    <string name="history_field_num_sessions">Mindful Moments</string>
+    <string name="history_field_mood">Daily Check-in</string>
+    <string name="history_value_not_set">Not Set</string>
 </resources>
