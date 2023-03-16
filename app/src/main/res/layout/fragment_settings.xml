@@ -4,19 +4,428 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.saved.SavedFragment">
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingBottom="16dp">
 
-    <TextView
-        android:id="@+id/text_settings"
+    <LinearLayout
+        android:id="@+id/title_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_medium"
+            android:text="@string/title_settings"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="44dp"
+            android:layout_height="4dp"
+            android:background="@drawable/blue_rounded_rectangle" />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/title_container"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ScrollViewSize"
+            android:orientation="vertical"
+            android:scrollbars="vertical">
+
+            <!-- ************** Section: MEDITATION REMINDERS **************** -->
+
+            <!-- Section Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/readex_pro_light"
+                android:textColor="@color/blue_2"
+                android:textSize="14sp"
+                android:text="@string/settings_section_formal"
+                android:textAllCaps="true"/>
+
+            <!-- Field: Formal On/Off -->
+            <LinearLayout
+                android:id="@+id/settings_selector_enable_formal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_enable_formal"
+                    android:layout_weight="1"/>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/settings_switch_enable_formal"
+                    style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: Num. of reminders (formal) -->
+            <LinearLayout
+                android:id="@+id/settings_selector_num_formal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_num_formal"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/settings_value_num_formal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/settings_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+            
+            
+            <!-- Field: reminder 1 -->
+            <LinearLayout
+                android:id="@+id/settings_selector_formal1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_formal1"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/settings_value_formal1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/settings_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/divider_reminder_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: reminder 2 -->
+            <LinearLayout
+                android:id="@+id/settings_selector_formal2"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_formal2"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/settings_value_formal2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/settings_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/divider_reminder_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: reminder 3 -->
+            <LinearLayout
+                android:id="@+id/settings_selector_formal3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_formal3"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/settings_value_formal3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/settings_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/divider_reminder_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: reminder 4 -->
+            <LinearLayout
+                android:id="@+id/settings_selector_formal4"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_formal4"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/settings_value_formal4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/settings_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/divider_reminder_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: reminder 5 -->
+            <LinearLayout
+                android:id="@+id/settings_selector_formal5"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_formal5"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/settings_value_formal5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/settings_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:id="@+id/divider_reminder_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+
+            <!-- ************** Section: MINDFUL MOMENTS REMINDERS **************** -->
+            <!-- Section Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/readex_pro_light"
+                android:textSize="14sp"
+                android:textColor="@color/blue_2"
+                android:text="@string/settings_section_informal"
+                android:textAllCaps="true"/>
+
+            <!-- Field: Inormal On/Off -->
+            <LinearLayout
+                android:id="@+id/settings_selector_enable_informal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_enable_informal"
+                    android:layout_weight="1"/>
+
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/settings_switch_enable_informal"
+                    style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+
+            <!-- Field: Num. of reminders (informal) -->
+            <LinearLayout
+                android:id="@+id/settings_selector_num_informal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/settings_field_num_informal"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/settings_value_num_informal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/readex_pro_medium"
+                        android:textColor="@color/blue_2"
+                        android:text="@string/settings_value_not_set"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_round_chevron_right_24"
+                        app:tint="@color/blue_2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"/>
+            
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
