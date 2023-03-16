@@ -113,4 +113,12 @@
     <string name="dialog_mood_title">Daily Check-In</string>
     <string name="dialog_mood_done_btn">Done</string>
     <string name="dialog_mood_subtitle">Keeping track of mood improves self-regulation.</string>
+
+
+    <!-- **************** DONE PAGE ***************** -->
+    <string name="done_title">Well Done!</string>
+    <string name="done_subtitle">You have successfully completed your mindfulness session. Congratulations! </string>
+    <string name="done_additional_info">How did it go? We appreciate it\'s not always easy to maintain a mindful attitude during a session.\n\nHowever, rest assured that feeling distracted and losing focus is quite common. So don\'t worry, this is part of the process!</string>
+    <string name="done_ok_btn">Ok. Great!</string>
+
 </resources>

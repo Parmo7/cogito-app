@@ -180,7 +180,7 @@ public class SessionFragment extends Fragment {
 
                 if (model.isDailyCheckInDone()) {
                     NavHostFragment.findNavController(SessionFragment.this)
-                            .navigate(R.id.action_session_to_navigation_home);
+                            .navigate(R.id.action_session_to_doneFragment);
 
                 } else {
                     NavHostFragment.findNavController(SessionFragment.this)

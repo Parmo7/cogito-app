@@ -65,13 +65,13 @@ public class CheckInFragment extends Fragment {
                 }
 
                 NavHostFragment.findNavController(CheckInFragment.this)
-                        .navigate(R.id.action_checkInFragment_to_navigation_home);
+                        .navigate(R.id.action_checkInFragment_to_doneFragment);
             }
         });
 
         binding.checkinSkipBtn.setOnClickListener(v -> {
             NavHostFragment.findNavController(CheckInFragment.this)
-                    .navigate(R.id.action_checkInFragment_to_navigation_home);
+                    .navigate(R.id.action_checkInFragment_to_doneFragment);
         });
     }
 

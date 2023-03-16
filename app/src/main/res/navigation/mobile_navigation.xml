@@ -13,7 +13,8 @@
         <action
             android:id="@+id/action_navigation_home_to_session"
             app:destination="@id/session"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment
@@ -24,7 +25,8 @@
         <action
             android:id="@+id/action_navigation_saved_to_session"
             app:destination="@id/session"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_navigation_saved_to_navigation_home"
             app:destination="@id/navigation_home" />
@@ -54,10 +56,16 @@
         <action
             android:id="@+id/action_session_to_navigation_home"
             app:destination="@id/navigation_home"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_session_to_checkInFragment"
-            app:destination="@id/checkInFragment" />
+            app:destination="@id/checkInFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_session_to_doneFragment"
+            app:destination="@id/doneFragment"
+            app:enterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/configSettingsFragment"
@@ -78,7 +86,18 @@
         android:label="fragment_check_in"
         tools:layout="@layout/fragment_check_in" >
         <action
-            android:id="@+id/action_checkInFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            android:id="@+id/action_checkInFragment_to_doneFragment"
+            app:destination="@id/doneFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/doneFragment"
+        android:name="uk.ac.aston.cogito.ui.session.DoneFragment"
+        android:label="DoneFragment" >
+        <action
+            android:id="@+id/action_doneFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>
