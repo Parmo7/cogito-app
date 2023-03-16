@@ -99,7 +99,9 @@ public class HistoryFragment extends Fragment implements BottomDialogListener {
         calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
-                updateBottomUI(eventDay.getCalendar());
+                if (!eventDay.getCalendar().after(today)) {
+                    updateBottomUI(eventDay.getCalendar());
+                }
             }
 
         });
@@ -178,9 +180,15 @@ public class HistoryFragment extends Fragment implements BottomDialogListener {
     @Override
     public void onDoneBtnPressed(FormBottomDialog dialog) {
         if (dialog instanceof SelectMoodDialog) {
+            // Get the date
+            String date = ((SelectMoodDialog) dialog).getDayRecord().getDate();
+
+            // Get the selected mood
             String chipName = ((SelectMoodDialog) dialog).getValue();
             Mood associatedMood = MoodManager.getMoodByName(chipName);
-            model.recordTodayMood(associatedMood);
+
+            // Update the model
+            model.updateMood(date, associatedMood);
 
             Toast.makeText(getContext(), "Check-in updated.", Toast.LENGTH_SHORT).show();
         }

@@ -24,6 +24,7 @@ import uk.ac.aston.cogito.ui.session.CheckInFragment;
 public class SelectMoodDialog extends FormBottomDialog {
 
     private ChipGroup chipGroup;
+    private DayRecord dayRecord;
 
     public SelectMoodDialog(BottomDialogListener listener, @NonNull Context context) {
         super(listener, context, R.layout.dialog_select_mood);
@@ -49,6 +50,7 @@ public class SelectMoodDialog extends FormBottomDialog {
     public void show(DayRecord dayRecord) {
         super.show();
 
+        this.dayRecord = dayRecord;
         Mood mood = dayRecord.getMood();
         int chipId;
 
@@ -121,5 +123,9 @@ public class SelectMoodDialog extends FormBottomDialog {
             return selectedChip.getText().toString();
         }
         return null;
+    }
+
+    public DayRecord getDayRecord() {
+        return dayRecord;
     }
 }
