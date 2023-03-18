@@ -138,4 +138,16 @@
     <string name="settings_field_num_informal">Reminders per day</string>
     <string name="settings_field_enable_informal">Enable</string>
 
+    <!-- Dialogs -->
+    <string name="dialog_numformal_title">Meditation Reminders</string>
+    <string name="dialog_numformal_done_btn">Done</string>
+    <string name="dialog_numformal_subtitle">Please choose how many reminders you would like to receive per day to practice mindfulness meditation.</string>
+
+    <string name="dialog_numinformal_title">Mindful Moments Reminders</string>
+    <string name="dialog_numinformal_done_btn">Done</string>
+    <string name="dialog_numinformal_subtitle">Please choose how many notifications you would like to receive throughout the day to help you stay mindful.</string>
+
+    <string name="dialog_formaltime_title">Set Reminder Time</string>
+    <string name="dialog_formaltime_done_btn">Done</string>
+    <string name="dialog_formaltime_subtitle">Please pick a time for the meditation reminder.</string>
 </resources>

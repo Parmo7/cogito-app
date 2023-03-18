@@ -22,6 +22,7 @@ import uk.ac.aston.cogito.CogitoApp;
 import uk.ac.aston.cogito.model.entities.DayRecord;
 import uk.ac.aston.cogito.model.entities.Mood;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
+import uk.ac.aston.cogito.model.entities.Settings;
 
 public class DataManager {
 
@@ -39,6 +40,8 @@ public class DataManager {
 
     private List<DayRecord> history;
 
+    private Settings settings;
+
     private DataManager(Context context) {
         this.context = context;
         allConfigs = new ArrayList<>();
@@ -47,6 +50,7 @@ public class DataManager {
         retrieveFromMemory(FileType.ALL_CONFIGS);
         retrieveFromMemory(FileType.LATEST_CONFIG);
         retrieveFromMemory(FileType.HISTORY);
+        retrieveFromMemory(FileType.APP_SETTINGS);
     }
 
     protected static DataManager getInstance(Context context) {
@@ -156,6 +160,10 @@ public class DataManager {
                 case HISTORY:
                     obj = history;
                     break;
+
+                case APP_SETTINGS:
+                    obj = settings;
+                    break;
             }
 
             String json = objectWriter.writeValueAsString(obj);
@@ -201,6 +209,11 @@ public class DataManager {
                 case HISTORY:
                     // Update the local copy of the history
                     history = new ArrayList<>(Arrays.asList(mapper.readValue(contents, DayRecord[].class)));
+                    break;
+
+                case APP_SETTINGS:
+                    // Update the local copy of the app settings
+                    settings = mapper.readValue(contents, Settings.class);
                     break;
             }
 
@@ -267,6 +280,16 @@ public class DataManager {
         }
 
         saveToMemory(FileType.HISTORY);
+    }
+
+
+    public Settings getUpToDateSettings() {
+        return settings;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
+        saveToMemory(FileType.APP_SETTINGS);
     }
 
 

@@ -27,6 +27,7 @@
             android:textSize="24sp" />
 
         <View
+
             android:layout_width="44dp"
             android:layout_height="4dp"
             android:background="@drawable/blue_rounded_rectangle" />
@@ -120,6 +121,7 @@
                         android:text="@string/settings_value_not_set"/>
 
                     <ImageView
+                        android:id="@+id/settings_arrow_num_formal"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_round_chevron_right_24"
@@ -128,6 +130,7 @@
 
             </LinearLayout>
             <View
+                android:id="@+id/divider_num_formal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tall_line_divider"/>
@@ -162,6 +165,7 @@
                         android:text="@string/settings_value_not_set"/>
 
                     <ImageView
+                        android:id="@+id/settings_arrow_formal1"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_round_chevron_right_24"
@@ -203,6 +207,7 @@
                         android:text="@string/settings_value_not_set"/>
 
                     <ImageView
+                        android:id="@+id/settings_arrow_formal2"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_round_chevron_right_24"
@@ -244,6 +249,7 @@
                         android:text="@string/settings_value_not_set"/>
 
                     <ImageView
+                        android:id="@+id/settings_arrow_formal3"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_round_chevron_right_24"
@@ -285,6 +291,7 @@
                         android:text="@string/settings_value_not_set"/>
 
                     <ImageView
+                        android:id="@+id/settings_arrow_formal4"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_round_chevron_right_24"
@@ -326,6 +333,7 @@
                         android:text="@string/settings_value_not_set"/>
 
                     <ImageView
+                        android:id="@+id/settings_arrow_formal5"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_round_chevron_right_24"
@@ -412,6 +420,7 @@
                         android:text="@string/settings_value_not_set"/>
 
                     <ImageView
+                        android:id="@+id/settings_arrow_num_informal"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_round_chevron_right_24"
@@ -421,6 +430,7 @@
             </LinearLayout>
 
             <View
+                android:id="@+id/divider_num_informal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/tall_line_divider"/>
