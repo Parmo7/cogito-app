@@ -10,11 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +20,7 @@ import android.widget.TextView;
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentSettingsBinding;
 import uk.ac.aston.cogito.model.SettingsViewModel;
+import uk.ac.aston.cogito.model.TimeManager;
 import uk.ac.aston.cogito.model.entities.Settings;
 import uk.ac.aston.cogito.ui.dialogs.BottomDialogListener;
 import uk.ac.aston.cogito.ui.dialogs.FormBottomDialog;
@@ -120,11 +119,20 @@ public class SettingsFragment extends Fragment implements BottomDialogListener {
                     // Update fields for formal practice reminders
                     binding.settingsSwitchEnableFormal.setChecked(settings.isFormalEnabled());
                     binding.settingsValueNumFormal.setText(String.valueOf(settings.getNumFormal()));
-                    binding.settingsValueFormal1.setText(String.valueOf(settings.getFormalTimes()[0]));
-                    binding.settingsValueFormal2.setText(String.valueOf(settings.getFormalTimes()[1]));
-                    binding.settingsValueFormal3.setText(String.valueOf(settings.getFormalTimes()[2]));
-                    binding.settingsValueFormal4.setText(String.valueOf(settings.getFormalTimes()[3]));
-                    binding.settingsValueFormal5.setText(String.valueOf(settings.getFormalTimes()[4]));
+
+                    String[] formalTimes12 = new String[DEFAULT_MAX_REMINDERS];
+                    for (int i = 0; i < formalTimes12.length; i++) {
+                        String time24 = String.valueOf(settings.getFormalTimes()[i]);
+                        String time12 = TimeManager.date24to12(time24);
+                        formalTimes12[i] = time12;
+                    }
+
+                    binding.settingsValueFormal1.setText(formalTimes12[0]);
+                    binding.settingsValueFormal2.setText(formalTimes12[1]);
+                    binding.settingsValueFormal3.setText(formalTimes12[2]);
+                    binding.settingsValueFormal4.setText(formalTimes12[3]);
+                    binding.settingsValueFormal5.setText(formalTimes12[4]);
+
 
                     // Update fields for informal practice reminders
                     binding.settingsSwitchEnableInformal.setChecked(settings.isInformalEnabled());
@@ -219,15 +227,16 @@ public class SettingsFragment extends Fragment implements BottomDialogListener {
             binding.settingsValueNumInformal.setText(String.valueOf(numReminders));
 
         } else if (dialog instanceof PickReminderTimeDialog) {
-            String time = ((PickReminderTimeDialog) dialog).getValue();
+            String time24 = ((PickReminderTimeDialog) dialog).getValue24();
+            String time12 = TimeManager.date24to12(time24);
 
             String[] formalTimes = settings.getFormalTimes();
             int index = ((PickReminderTimeDialog) dialog).getIndex();
-            formalTimes[index] = time;
+            formalTimes[index] = time24;
 
             settings.setFormalTimes(formalTimes);
             model.setSettings(settings);
-            fieldsFormalTime[index].value.setText(time);
+            fieldsFormalTime[index].value.setText(time12);
         }
     }
 

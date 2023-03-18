@@ -1,9 +1,6 @@
 package uk.ac.aston.cogito.ui.dialogs;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.TimePicker;
 
@@ -11,6 +8,10 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
@@ -30,11 +31,11 @@ public class PickReminderTimeDialog extends FormBottomDialog {
 
     @Override
     protected void initializeForm() {
-        timePicker.setIs24HourView(true);
+        timePicker.setIs24HourView(false);
     }
 
 
-    public String getValue() {
+    public String getValue24() {
         int hour = timePicker.getHour();
         int min = timePicker.getMinute();
 
@@ -52,10 +53,10 @@ public class PickReminderTimeDialog extends FormBottomDialog {
     public void show(SessionConfig sessionConfig) {}
 
 
-    public void show(String timeString) {
+    public void show(String timeString24) {
         // Set the value of the timer
-        int hour = Integer.parseInt(timeString.substring(0, 2));
-        int min = Integer.parseInt(timeString.substring(3, 5));
+        int hour = Integer.parseInt(timeString24.substring(0, 2));
+        int min = Integer.parseInt(timeString24.substring(3, 5));
 
         timePicker.setHour(hour);
         timePicker.setMinute(min);
