@@ -1,5 +1,7 @@
 package uk.ac.aston.cogito.notifications;
 
+import static uk.ac.aston.cogito.model.TimeManager.TIME_FORMAT_24;
+
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -10,15 +12,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.TimeManager;
@@ -55,19 +54,25 @@ public class NotificationReceiver extends BroadcastReceiver {
         manager.notify(notification_id, notification);
 
         // Schedule the next notification
-        scheduleNotification(context, intent);
+        boolean isFormalReminder = intent.getBooleanExtra("is_formal", true);
+        if (isFormalReminder) {
+            scheduleFormalNotification(context, intent);
+
+        } else {
+            String tomorrowTime = TimeManager.randomTime24();
+            intent.putExtra("time", tomorrowTime);
+            scheduleInformalNotification(context, intent);
+        }
     }
 
-    protected static void scheduleNotification(Context context, Intent intent) {
-        intentList.add(intent);
+    protected static void scheduleFormalNotification(Context context, Intent intent) {
+        if (!intentList.contains(intent)) {
+            intentList.add(intent);
+        }
 
         int notification_id = intent.getIntExtra("notification_id", 0);
         String time24 = intent.getStringExtra("time");
         long nextDateTime = TimeManager.date24toMillisNext(time24);
-
-        // TODO remove
-        Date date = new Date(nextDateTime);
-        Log.i("ParmiTime", "Next schedule:" + date.toString());
 
         PendingIntent pending = PendingIntent.getBroadcast(
                 context,
@@ -79,6 +84,35 @@ public class NotificationReceiver extends BroadcastReceiver {
         // Schedule notification
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, nextDateTime, pending);
+    }
+
+    protected static void scheduleInformalNotification(Context context, Intent intent) {
+        int notification_id = intent.getIntExtra("notification_id", 0);
+        String time24 = intent.getStringExtra("time");
+
+        long tomorrowDateTime = TimeManager.date24toMillisTomorrow(time24);
+
+        Date date = new Date(tomorrowDateTime);
+        String timeString = TIME_FORMAT_24.format(date);
+        intent.putExtra("time", timeString);
+        if (!intentList.contains(intent)) {
+            intentList.add(intent);
+        }
+
+
+        // TODO remove
+        Log.i("ParmiTime", "Next schedule informal:" + date);
+
+        PendingIntent pending = PendingIntent.getBroadcast(
+                context,
+                notification_id,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+        // Schedule notification
+        AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, tomorrowDateTime, pending);
     }
 
 
