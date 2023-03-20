@@ -32,44 +32,15 @@
             android:background="@drawable/blue_rounded_rectangle" />
     </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/calendar_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_container"
-        android:layout_marginTop="24dp">
-
-        <com.applandeo.materialcalendarview.CalendarView
-            android:id="@+id/calendar_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:type="one_day_picker"
-            app:selectionColor="@color/blue_2"
-            app:pagesColor="@color/blue_4"
-            app:abbreviationsBarColor="@color/blue_4"
-            app:todayLabelColor="@color/blue_2"
-            app:headerColor="@color/blue_4"
-            app:headerLabelColor="@color/black"
-            app:previousButtonSrc="@drawable/ic_round_chevron_left_24"
-            app:forwardButtonSrc="@drawable/ic_round_chevron_right_24"
-            app:eventsEnabled="true"
-            app:firstDayOfWeek="monday"/>
-    </androidx.cardview.widget.CardView>
-
     <ScrollView
-        android:id="@+id/day_record_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calendar_card"
+        app:layout_constraintTop_toBottomOf="@id/title_container"
         app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -77,108 +48,140 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Section Name -->
-            <TextView
-                android:id="@+id/history_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/readex_pro_light"
-                android:text="@string/history_section_date"
-                android:textAllCaps="true"
-                android:textColor="@color/blue_2"
-                android:textSize="14sp" />
-
-            <!-- Field: Number of sessions -->
-            <LinearLayout
-                android:id="@+id/history_selector_num_sessions"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/calendar_card"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
 
-                <TextView
-                    android:layout_width="0dp"
+                <com.applandeo.materialcalendarview.CalendarView
+                    android:id="@+id/calendar_view"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/history_field_num_sessions"
-                    android:textSize="16sp" />
+                    app:type="one_day_picker"
+                    app:selectionColor="@color/blue_2"
+                    app:pagesColor="@color/blue_4"
+                    app:abbreviationsBarColor="@color/blue_4"
+                    app:todayLabelColor="@color/blue_2"
+                    app:headerColor="@color/blue_4"
+                    app:headerLabelColor="@color/black"
+                    app:previousButtonSrc="@drawable/ic_round_chevron_left_24"
+                    app:forwardButtonSrc="@drawable/ic_round_chevron_right_24"
+                    app:eventsEnabled="true"
+                    app:firstDayOfWeek="monday"/>
+            </androidx.cardview.widget.CardView>
 
-                <LinearLayout
+            <LinearLayout
+                android:id="@+id/day_record_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="16dp">
+
+                <!-- Section Name -->
+                <TextView
+                    android:id="@+id/history_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/readex_pro_light"
+                    android:text="@string/history_section_date"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue_2"
+                    android:textSize="14sp" />
+
+                <!-- Field: Number of sessions -->
+                <LinearLayout
+                    android:id="@+id/history_selector_num_sessions"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
                     android:gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/history_value_num_sessions"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/readex_pro_medium"
-                        android:text="@string/history_value_not_set"
-                        android:textColor="@color/blue_2"
+                        android:layout_weight="1"
+                        android:text="@string/history_field_num_sessions"
                         android:textSize="16sp" />
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_round_chevron_right_24"
-                        android:visibility="gone"
-                        app:tint="@color/blue_2" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/history_value_num_sessions"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/readex_pro_medium"
+                            android:text="@string/history_value_not_set"
+                            android:textColor="@color/blue_2"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_round_chevron_right_24"
+                            android:visibility="gone"
+                            app:tint="@color/blue_2" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tall_line_divider" />
-
-            <!-- Field: Mood -->
-            <LinearLayout
-                android:id="@+id/history_selector_mood"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="0dp"
+                <View
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/history_field_mood"
-                    android:textSize="16sp" />
+                    android:background="@drawable/tall_line_divider" />
 
+                <!-- Field: Mood -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/history_selector_mood"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
                     android:gravity="center_vertical">
 
-                    <ImageView
-                        android:id="@+id/history_image_emoji"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp" />
-
                     <TextView
-                        android:id="@+id/history_value_mood"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/readex_pro_medium"
-                        android:text="@string/history_value_not_set"
-                        android:textColor="@color/blue_2"
+                        android:layout_weight="1"
+                        android:text="@string/history_field_mood"
                         android:textSize="16sp" />
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_round_chevron_right_24"
-                        app:tint="@color/blue_2" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/history_image_emoji"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp" />
+
+                        <TextView
+                            android:id="@+id/history_value_mood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/readex_pro_medium"
+                            android:text="@string/history_value_not_set"
+                            android:textColor="@color/blue_2"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_round_chevron_right_24"
+                            app:tint="@color/blue_2" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tall_line_divider" />
+
+
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tall_line_divider" />
-
-
         </LinearLayout>
     </ScrollView>
 
