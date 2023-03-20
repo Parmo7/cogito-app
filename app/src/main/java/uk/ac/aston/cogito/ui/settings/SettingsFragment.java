@@ -1,7 +1,12 @@
 package uk.ac.aston.cogito.ui.settings;
 
+import static android.provider.Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM;
 import static uk.ac.aston.cogito.model.SettingsViewModel.DEFAULT_MAX_REMINDERS;
 
+import android.app.AlarmManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,12 +21,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import uk.ac.aston.cogito.MainActivity;
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.databinding.FragmentSettingsBinding;
 import uk.ac.aston.cogito.model.SettingsViewModel;
 import uk.ac.aston.cogito.model.TimeManager;
 import uk.ac.aston.cogito.model.entities.Settings;
+import uk.ac.aston.cogito.notifications.NotificationManager;
+import uk.ac.aston.cogito.notifications.NotificationReceiver;
 import uk.ac.aston.cogito.ui.dialogs.BottomDialogListener;
 import uk.ac.aston.cogito.ui.dialogs.FormBottomDialog;
 import uk.ac.aston.cogito.ui.dialogs.PickReminderTimeDialog;
@@ -139,6 +148,9 @@ public class SettingsFragment extends Fragment implements BottomDialogListener {
                     binding.settingsValueNumInformal.setText(String.valueOf(settings.getNumInformal()));
 
                     hideOrDisableFields();
+
+                    // Schedule notifications, if required
+                    NotificationManager.schedule(getContext(), settings);
                 }
             }
         };
@@ -199,10 +211,21 @@ public class SettingsFragment extends Fragment implements BottomDialogListener {
             );
         }
 
+        AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
 
         binding.settingsSwitchEnableFormal.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            settings.setFormalEnabled(isChecked);
-            model.setSettings(settings);
+
+            // Check if we have permission to show notifications
+            if (isChecked && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                    && !alarmManager.canScheduleExactAlarms()) {
+
+                binding.settingsSwitchEnableFormal.setChecked(false);
+                startActivity(new Intent(ACTION_REQUEST_SCHEDULE_EXACT_ALARM));
+
+            } else {
+                settings.setFormalEnabled(isChecked);
+                model.setSettings(settings);
+            }
         });
 
         binding.settingsSwitchEnableInformal.setOnCheckedChangeListener((buttonView, isChecked) -> {

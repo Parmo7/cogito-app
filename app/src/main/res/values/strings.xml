@@ -150,4 +150,45 @@
     <string name="dialog_formaltime_title">Set Reminder Time</string>
     <string name="dialog_formaltime_done_btn">Done</string>
     <string name="dialog_formaltime_subtitle">Please pick a time for the meditation reminder.</string>
+
+
+    <!-- **************** NOTIFICATIONS ***************** -->
+    <string name="notification_formal_title">Time to meditate!</string>
+    <string name="notification_formal_text">Hey there, it’s time for our mindfulness practice! \ud83d\ude04</string>
+
+    <string name="notification_informal_1_title">Experiencing the present</string>
+    <string name="notification_informal_1_text">The little things? The little moments? They aren’t little. \ud83d\ude04</string>
+
+    <string name="notification_informal_2_title">Cultivating mindfulness</string>
+    <string name="notification_informal_2_text">The best way to capture moments is to pay attention. This is how we cultivate mindfulness. \ud83d\ude04</string>
+
+    <string name="notification_informal_3_title">Be mindful of the present</string>
+    <string name="notification_informal_3_text">The present moment is the only time over which we have dominion.</string>
+
+    <string name="notification_informal_4_title">Live the moment</string>
+    <string name="notification_informal_4_text">Live the actual moment. Only this actual moment is life. \ud83d\ude04</string>
+
+    <string name="notification_informal_5_title">The power of acceptance</string>
+    <string name="notification_informal_5_text">What would it be like if I could accept life – accept this moment – exactly as it is?</string>
+
+    <string name="notification_informal_6_title">Focus on what you are doing now</string>
+    <string name="notification_informal_6_text">Do not dwell in the past or in the future, concentrate the mind on the present moment.</string>
+
+    <string name="notification_informal_7_title">Experience every moment as it happens</string>
+    <string name="notification_informal_7_text">Wherever you are, be there totally. \ud83d\ude04</string>
+
+    <string name="notification_informal_8_title">Nothing but the present</string>
+    <string name="notification_informal_8_text">Realize deeply that the present moment is all you have.</string>
+
+    <string name="notification_informal_9_title">Let go of your worries</string>
+    <string name="notification_informal_9_text">Worrying is stupid, it’s like walking around with an umbrella waiting for it to rain. </string>
+
+    <string name="notification_informal_10_title">Just breathe</string>
+    <string name="notification_informal_10_text">In a world full of doing, doing, doing, it’s important to take a moment to just breathe, to just be</string>
+
+
+    <!-- **************** SHARED PREFERENCES ***************** -->
+    <string name="prefs_key">uk.ac.aston.cogito.shared_prefs</string>
+    <string name="prefs_formal_scheduled">formal_scheduled</string>
+    <string name="prefs_informal_scheduled">informal_scheduled</string>
 </resources>
