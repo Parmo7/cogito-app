@@ -3,8 +3,11 @@ package uk.ac.aston.cogito.ui.dialogs;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import uk.ac.aston.cogito.R;
 import uk.ac.aston.cogito.model.entities.SessionConfig;
@@ -20,6 +23,14 @@ public abstract class FormBottomDialog extends BottomSheetDialog {
 
         this.doneBtn = findViewById(R.id.done_btn);
         this.listener = listener;
+
+        // Make sure the dialog displays in full height
+        setOnShowListener(dialog -> {
+            BottomSheetDialog d = (BottomSheetDialog) dialog;
+
+            FrameLayout bottomSheet = (FrameLayout) d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
+        });
     }
 
     @Override

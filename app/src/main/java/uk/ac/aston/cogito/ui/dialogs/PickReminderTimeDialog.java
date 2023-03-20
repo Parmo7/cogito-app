@@ -61,14 +61,6 @@ public class PickReminderTimeDialog extends FormBottomDialog {
         timePicker.setHour(hour);
         timePicker.setMinute(min);
 
-        // Make sure the dialog displays in full height
-        setOnShowListener(dialog -> {
-            BottomSheetDialog d = (BottomSheetDialog) dialog;
-
-            FrameLayout bottomSheet = (FrameLayout) d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
-            BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
-        });
-
         super.show();
     }
 }
