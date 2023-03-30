@@ -191,4 +191,19 @@
     <string name="prefs_key">uk.ac.aston.cogito.shared_prefs</string>
     <string name="prefs_formal_scheduled">formal_scheduled</string>
     <string name="prefs_informal_scheduled">informal_scheduled</string>
+    <string name="prefs_is_first_time">is_new_user</string>
+
+
+    <!-- **************** ONBOARDING PAGES ***************** -->
+    <string name="onboarding_skip_btn">Skip</string>
+
+    <string name="onboarding1_title">About Cogito</string>
+    <string name="onboarding1_text">Integer nec velit nec libero feugiat eleifend luctus vitae mauris. Cras at libero id velit consectetur placerat. Etiam accumsan bibendum nulla, id tincidunt sem varius quis. Duis non metus mauris. Pellentesque quis quam arcu</string>
+    <string name="onboarding1_continue_btn">Next</string>
+
+    <string name="onboarding2_title">Warnings</string>
+    <string name="onboarding2_text">Integer nec velit nec libero feugiat eleifend luctus vitae mauris. Cras at libero id velit consectetur placerat. Etiam accumsan bibendum nulla, id tincidunt sem varius quis. Duis non metus mauris. Pellentesque quis quam arcu</string>
+    <string name="onboarding2_prev_btn">Previous</string>
+    <string name="onboarding2_done_btn">Let\'s get started</string>
+
 </resources>

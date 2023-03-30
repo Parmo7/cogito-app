@@ -26,25 +26,28 @@
             android:fontFamily="@font/readex_pro_medium"
             android:textSize="22sp"
             android:layout_weight="1"
-            android:textColor="@color/blue_1"
-            />
+            android:textColor="@color/blue_1"/>
 
-        <FrameLayout
-            android:id="@+id/support_btn"
+        <LinearLayout
+            android:id="@+id/skip_btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_shape"
+            android:layout_height="34dp"
+            android:background="@drawable/blue_rounded_rectangle"
+            android:backgroundTint="@color/blue_4"
             android:clickable="true"
             android:focusable="true"
             android:visibility="visible"
-            android:padding="8dp">
+            android:paddingHorizontal="16dp"
+            android:gravity="center">
 
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_outline_contact_support_24"
-                app:tint="@color/blue_1" />
-        </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_1"
+                android:fontFamily="@font/readex_pro_medium"
+                android:textSize="16sp"
+                android:text="@string/onboarding_skip_btn"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

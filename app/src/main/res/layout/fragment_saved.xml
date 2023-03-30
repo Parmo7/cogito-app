@@ -42,7 +42,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_container"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="64dp"
+        android:scrollbarStyle="outsideInset"/>
 
     <Button
         android:id="@+id/saved_add_btn"

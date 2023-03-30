@@ -1,8 +1,10 @@
 package uk.ac.aston.cogito;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = binding.toolbar;
         setSupportActionBar(myToolbar);
 
 
@@ -35,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         preferences = getSharedPreferences(getString(R.string.prefs_key), Context.MODE_PRIVATE);
+
+        // Check if we need to display our OnboardingtFragment
+        boolean isFirstTimeUser = preferences.getBoolean(getString(R.string.prefs_is_first_time), true);
+        if (isFirstTimeUser) {
+            // The user hasn't seen the OnboardingSupportFragment yet, so show it
+            startActivity(new Intent(this, OnBoardingActivity.class));
+        }
     }
 
     public SharedPreferences getSharedPreferences() {
