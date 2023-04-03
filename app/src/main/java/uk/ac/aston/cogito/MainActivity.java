@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,6 +15,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import uk.ac.aston.cogito.databinding.ActivityMainBinding;
+import uk.ac.aston.cogito.ui.dialogs.help.HelpDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,19 +32,26 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = binding.toolbar;
         setSupportActionBar(myToolbar);
 
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        preferences = getSharedPreferences(getString(R.string.prefs_key), Context.MODE_PRIVATE);
-
+        
         // Check if we need to display our OnboardingtFragment
+        preferences = getSharedPreferences(getString(R.string.prefs_key), Context.MODE_PRIVATE);
         boolean isFirstTimeUser = preferences.getBoolean(getString(R.string.prefs_is_first_time), true);
         if (isFirstTimeUser) {
             // The user hasn't seen the OnboardingSupportFragment yet, so show it
             startActivity(new Intent(this, OnBoardingActivity.class));
         }
+
+
+        // Show dialog if help button in the action bar is selected
+        HelpDialog helpDialog = new HelpDialog();
+
+        FrameLayout helpBtn = findViewById(R.id.help_btn);
+        helpBtn.setOnClickListener(v -> {
+            helpDialog.show(getSupportFragmentManager(), null);
+        });
     }
 
     public SharedPreferences getSharedPreferences() {

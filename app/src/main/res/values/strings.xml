@@ -206,4 +206,11 @@
     <string name="onboarding2_prev_btn">Previous</string>
     <string name="onboarding2_done_btn">Let\'s get started</string>
 
+
+    <!-- **************** HELP DIALOG ***************** -->
+    <string name="help_tab_hints">Hints</string>
+    <string name="help_tab_general">General</string>
+    <string name="help_tab_warnings">Warnings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
