@@ -61,44 +61,48 @@ public class SelectMoodDialog extends FormBottomDialog {
                     chipId = R.id.chip_happy;
                     break;
 
+                case "Excited":
+                    chipId = R.id.chip_excited;
+                    break;
+
                 case "Grateful":
                     chipId = R.id.chip_grateful;
                     break;
 
-                case "In Love":
-                    chipId = R.id.chip_inlove;
+                case "Relaxed":
+                    chipId = R.id.chip_relaxed;
                     break;
 
-                case "Curious":
-                    chipId = R.id.chip_curious;
+                case "Content":
+                    chipId = R.id.chip_content;
                     break;
 
-                case "Sad":
-                    chipId = R.id.chip_sad;
+                case "Tired":
+                    chipId = R.id.chip_tired;
                     break;
 
-                case "Hurt":
-                    chipId = R.id.chip_hurt;
+                case "Unsure":
+                    chipId = R.id.chip_unsure;
+                    break;
+
+                case "Bored":
+                    chipId = R.id.chip_bored;
                     break;
 
                 case "Anxious":
                     chipId = R.id.chip_anxious;
                     break;
 
-                case "Sleepy":
-                    chipId = R.id.chip_sleepy;
+                case "Angry":
+                    chipId = R.id.chip_angry;
                     break;
 
-                case "Sick":
-                    chipId = R.id.chip_sick;
+                case "Stressed":
+                    chipId = R.id.chip_stressed;
                     break;
 
-                case "Apathetic":
-                    chipId = R.id.chip_apathetic;
-                    break;
-
-                case "Exhausted":
-                    chipId = R.id.chip_exhausted;
+                case "Sad":
+                    chipId = R.id.chip_sad;
                     break;
 
                 default:

@@ -47,6 +47,14 @@
             app:chipIcon="@drawable/emoji_happy"/>
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chip_excited"
+            style="@style/ChipCustomStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/mood_excited"
+            app:chipIcon="@drawable/emoji_excited"/>
+
+        <com.google.android.material.chip.Chip
             android:id="@+id/chip_grateful"
             style="@style/ChipCustomStyle"
             android:layout_width="wrap_content"
@@ -55,37 +63,44 @@
             app:chipIcon="@drawable/emoji_grateful"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_inlove"
+            android:id="@+id/chip_relaxed"
             style="@style/ChipCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/mood_inlove"
-            app:chipIcon="@drawable/emoji_inlove"/>
+            android:text="@string/mood_relaxed"
+            app:chipIcon="@drawable/emoji_relaxed"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_curious"
+            android:id="@+id/chip_content"
             style="@style/ChipCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/mood_curious"
-            app:chipIcon="@drawable/emoji_curious"/>
+            android:text="@string/mood_content"
+            app:chipIcon="@drawable/emoji_content"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_sad"
+            android:id="@+id/chip_tired"
             style="@style/ChipCustomStyle"
-            app:chipCornerRadius="48dp"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/mood_sad"
-            app:chipIcon="@drawable/emoji_sad"/>
+            android:text="@string/mood_tired"
+            app:chipIcon="@drawable/emoji_tired"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_hurt"
+            android:id="@+id/chip_unsure"
             style="@style/ChipCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/mood_hurt"
-            app:chipIcon="@drawable/emoji_hurt"/>
+            android:text="@string/mood_unsure"
+            app:chipIcon="@drawable/emoji_unsure"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_bored"
+            style="@style/ChipCustomStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="@string/mood_bored"
+            app:chipIcon="@drawable/emoji_bored"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_anxious"
@@ -96,36 +111,28 @@
             app:chipIcon="@drawable/emoji_anxious"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_sleepy"
+            android:id="@+id/chip_angry"
             style="@style/ChipCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/mood_sleepy"
-            app:chipIcon="@drawable/emoji_sleepy"/>
+            android:text="@string/mood_angry"
+            app:chipIcon="@drawable/emoji_angry"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_sick"
+            android:id="@+id/chip_stressed"
             style="@style/ChipCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/mood_sick"
-            app:chipIcon="@drawable/emoji_sick"/>
+            android:text="@string/mood_stressed"
+            app:chipIcon="@drawable/emoji_stressed"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip_apathetic"
+            android:id="@+id/chip_sad"
             style="@style/ChipCustomStyle"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:text="@string/mood_apathetic"
-            app:chipIcon="@drawable/emoji_apathetic"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_exhausted"
-            style="@style/ChipCustomStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="@string/mood_exhausted"
-            app:chipIcon="@drawable/emoji_exhausted"/>
+            android:text="@string/mood_sad"
+            app:chipIcon="@drawable/emoji_sad"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip_none"

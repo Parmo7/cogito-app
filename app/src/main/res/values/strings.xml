@@ -90,16 +90,17 @@
     <string name="checkin_skip_btn">Skip</string>
 
     <string name="mood_happy">Happy</string>
+    <string name="mood_excited">Excited</string>
     <string name="mood_grateful">Grateful</string>
-    <string name="mood_inlove">In Love</string>
-    <string name="mood_curious">Curious</string>
-    <string name="mood_sad">Sad</string>
-    <string name="mood_hurt">Hurt</string>
+    <string name="mood_relaxed">Relaxed</string>
+    <string name="mood_content">Content</string>
+    <string name="mood_tired">Tired</string>
+    <string name="mood_unsure">Unsure</string>
+    <string name="mood_bored">Bored</string>
     <string name="mood_anxious">Anxious</string>
-    <string name="mood_sleepy">Sleepy</string>
-    <string name="mood_sick">Sick</string>
-    <string name="mood_apathetic">Apathetic</string>x
-    <string name="mood_exhausted">Exhausted</string>
+    <string name="mood_angry">Angry</string>
+    <string name="mood_stressed">Stressed</string>
+    <string name="mood_sad">Sad</string>
     <string name="mood_none">None</string>
 
 
@@ -211,6 +212,4 @@
     <string name="help_tab_hints">Hints</string>
     <string name="help_tab_general">General</string>
     <string name="help_tab_warnings">Warnings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
