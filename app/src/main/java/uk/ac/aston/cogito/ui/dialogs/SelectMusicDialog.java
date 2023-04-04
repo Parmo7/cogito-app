@@ -2,6 +2,7 @@ package uk.ac.aston.cogito.ui.dialogs;
 
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.widget.NumberPicker;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,8 @@ public class SelectMusicDialog extends FormBottomDialog {
     private NumberPicker musicPicker;
     private AudioResource[] allBgMusic;
     private String[] allBgMusicNames;
+
+    private MediaPlayer player;
 
     public SelectMusicDialog(BottomDialogListener listener, @NonNull Context context) {
         super(listener, context, R.layout.dialog_select_bg_music);
@@ -37,6 +40,22 @@ public class SelectMusicDialog extends FormBottomDialog {
         musicPicker.setDisplayedValues(allBgMusicNames);
         musicPicker.setMinValue(0);
         musicPicker.setMaxValue(allBgMusicNames.length - 1);
+
+        musicPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+            AudioResource selectedBell = allBgMusic[newVal];
+
+            if (player != null) {
+                try {
+                    player.stop();
+                } catch (Exception ignored) {
+                }
+            }
+
+            if (selectedBell.getResId() != 0) {
+                player = MediaPlayer.create(getContext(), selectedBell.getResId());
+                player.start();
+            }
+        });
     }
 
     public AudioResource getValue() {
@@ -59,5 +78,12 @@ public class SelectMusicDialog extends FormBottomDialog {
                 break;
             }
         }
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        player.release();
     }
 }

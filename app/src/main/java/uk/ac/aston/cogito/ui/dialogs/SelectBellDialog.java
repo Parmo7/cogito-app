@@ -1,6 +1,7 @@
 package uk.ac.aston.cogito.ui.dialogs;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -16,6 +17,8 @@ public abstract class SelectBellDialog extends FormBottomDialog {
     protected NumberPicker bellPicker;
     protected AudioResource[] allBellSounds;
     protected String[] alLBellSoundNames;
+
+    private MediaPlayer player;
 
     public SelectBellDialog(BottomDialogListener listener, @NonNull Context context) {
         super(listener, context, R.layout.dialog_select_bell_sound);
@@ -47,6 +50,23 @@ public abstract class SelectBellDialog extends FormBottomDialog {
         bellPicker.setDisplayedValues(alLBellSoundNames);
         bellPicker.setMinValue(0);
         bellPicker.setMaxValue(alLBellSoundNames.length - 1);
+
+
+        bellPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
+            AudioResource selectedBell = allBellSounds[newVal];
+
+            if (player != null) {
+                try {
+                    player.stop();
+                } catch (Exception ignored) {
+                }
+            }
+
+            if (selectedBell.getResId() != 0) {
+                player = MediaPlayer.create(getContext(), selectedBell.getResId());
+                player.start();
+            }
+        });
     }
 
     public AudioResource getValue() {
@@ -55,6 +75,13 @@ public abstract class SelectBellDialog extends FormBottomDialog {
             return allBellSounds[index];
         }
         return null;
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        player.release();
     }
 }
 
