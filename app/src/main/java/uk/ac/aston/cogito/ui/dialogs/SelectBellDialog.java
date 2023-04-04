@@ -81,7 +81,9 @@ public abstract class SelectBellDialog extends FormBottomDialog {
     @Override
     protected void onStop() {
         super.onStop();
-        player.release();
+        if (player != null) {
+            player.release();
+        }
     }
 }
 

@@ -84,6 +84,8 @@ public class SelectMusicDialog extends FormBottomDialog {
     @Override
     protected void onStop() {
         super.onStop();
-        player.release();
+        if (player != null) {
+            player.release();
+        }
     }
 }
