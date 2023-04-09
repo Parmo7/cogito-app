@@ -195,21 +195,75 @@
     <string name="prefs_is_first_time">is_new_user</string>
 
 
-    <!-- **************** ONBOARDING PAGES ***************** -->
+    <!-- **************** ONBOARDING PAGE 1 ***************** -->
     <string name="onboarding_skip_btn">Skip</string>
 
-    <string name="onboarding1_title">About Cogito</string>
-    <string name="onboarding1_text">Integer nec velit nec libero feugiat eleifend luctus vitae mauris. Cras at libero id velit consectetur placerat. Etiam accumsan bibendum nulla, id tincidunt sem varius quis. Duis non metus mauris. Pellentesque quis quam arcu</string>
+    <string name="onboarding1_title">About Mindfulness</string>
     <string name="onboarding1_continue_btn">Next</string>
 
-    <string name="onboarding2_title">Warnings</string>
-    <string name="onboarding2_text">Integer nec velit nec libero feugiat eleifend luctus vitae mauris. Cras at libero id velit consectetur placerat. Etiam accumsan bibendum nulla, id tincidunt sem varius quis. Duis non metus mauris. Pellentesque quis quam arcu</string>
+    <string name="onboarding1_text0a">Hey there, <b>welcome to Cogito!</b> We\'re glad to have you onboard! 🥰 </string>
+    <string name="onboarding1_text0b">Our app is designed to help you <b>cultivate mindfulness in your everyday life</b>.</string>
+
+    <string name="onboarding1_sect1">What is mindfulness?</string>
+    <string name="onboarding1_text1"><b>Mindfulness is the state of being fully present and engaged in what in what you\'re doing</b> - whether it\'s talking to a friend, eating a meal, or just walking down the street. When you\'re mindful, you\'re simply aware of what\'s happening in the present moment, and <b>you\'re able to observe your thoughts and emotions without getting caught up in them.</b></string>
+
+    <string name="onboarding1_sect2">What benefits would I get?</string>
+    <string name="onboarding1_text2a">Research has shown that mindfulness can help you <b>reduce stress and anxiety, increase focus and concentration, enhance sleep quality, improve relationships, and boost overall well-being</b> 🤩.</string>
+
+    <string name="onboarding1_sect3">How can I practice it?</string>
+    <string name="onboarding1_text3a">Mindfulness can be practiced through techniques such as <b>meditation, breathing exercises, and body scans.</b> The ultimate goal is to bring the same level of awareness that is cultivated during such formal practices to the rest of the day. </string>
+    <string name="onboarding1_text3b">There are many ways to incorporate mindfulness into daily life, such as <b>paying attention to the sensations in the body</b> while washing dishes, or simply noticing the sounds and sights around you during a walk outside.</string>
+
+
+    <!-- **************** ONBOARDING PAGE 2 ***************** -->
+    <string name="onboarding2_title">About the App</string>
     <string name="onboarding2_prev_btn">Previous</string>
-    <string name="onboarding2_done_btn">Let\'s get started</string>
+    <string name="onboarding2_next_btn">Next</string>
+
+    <string name="onboarding2_text0a">As opposed to traditional voice-guided meditation apps, Cogito gives you the tools to <b>practice independently</b> and <b>fully personalise your experience</b>.</string>
+    <string name="onboarding2_text0b">And… <b>you can use it both for formal practice</b>, such as meditation and breathing exercises, <b>or during your day-to-day activities</b>. Isn\'t that awesome?! 😆 </string>
+
+    <string name="onboarding2_sect1">How does it work?</string>
+    <string name="onboarding2_text1a">With our app, you can customise your practice through configurations. <b>Think of a configuration like a recipe</b> for your mindfulness session 🥗: you can choose <b>how long you want to practice for</b> and <b>what type of music you want to listen to</b> in the background. The right music can help create a more peaceful atmosphere to deepen your experience. </string>
+    <string name="onboarding2_text1b">Additionally, <b>you can set different bell sounds to play throughout your session</b> - bells serve as gentle reminders to bring your attention back to the present moment, in case your mind starts to wander.</string>
+    <string name="onboarding2_text1c">Once you\'ve created your perfect recipe, <b>simply hit play and… let your session begin!</b> 😉</string>
+
+    <string name="onboarding2_sect2">What do I do during a session?</string>
+    <string name="onboarding2_text2">If everything so far seems too vague, don\'t worry! 😉 Once you start using the app, <b>you can always click on the help button</b> at the top <b>to get specific tips</b> on how to practice mindfulness effectively! </string>
+
+    <string name="onboarding2_sect3">Is it for me?</string>
+    <string name="onboarding2_text3">Although our app is designed with experienced mindfulness practitioners in mind, <b>beginners are absolutely welcome to use it as well</b>. We believe that <b>mindfulness is a journey, and everyone has to start somewhere.</b></string>
+
+    <string name="onboarding2_text4">We hope you find our app helpful in your mindfulness journey. <b>Happy practicing!</b> 😊</string>
+
+    <!-- **************** ONBOARDING PAGE 3 ***************** -->
+    <string name="onboarding3_title">Navigating Difficulties</string>
+    <string name="onboarding3_prev_btn">Previous</string>
+    <string name="onboarding3_done_btn">Let\'s get started</string>
+
+    <string name="onboarding3_text0a">Remember that mindfulness practice is a journey, and <b>like any journey, there will be bumps in the road</b>. Don\'t get discouraged if you find yourself struggling to focus during your practice: this is a normal part of the process!</string>
+    <string name="onboarding3_text0b">Importantly, if at any point you feel overwhelmed or anxious, please pause the session and take a break. It is important to <b>listen to your body and practice at a pace that feels comfortable for you.</b></string>
+
+
+    <string name="onboarding3_sect1">Is mindfulness a medical tool?</string>
+    <string name="onboarding3_text1">No. <b>Mindfulness practice should not be used as a substitute for professional medical or mental health treatment</b>. If you are experiencing severe or ongoing mental health concerns, please seek the guidance of a qualified healthcare professional.</string>
+
+
+    <string name="onboarding3_sect2">Can I use Cogito anytime?</string>
+    <string name="onboarding3_text2">It\'s important to <b>use caution when practicing mindfulness while engaged in activities that require your full attention</b>, such as driving or operating machinery. It is recommended that you practice mindfulness in a safe, quiet environment where you can fully focus on the practice without distractions. </string>
+
+    <string name="onboarding3_text3">Above all, remember that <b>there is no right or wrong way to do it</b>. Each moment of difficulty is an opportunity to learn something new about yourself!</string>
+
+
+
+    <string name="onboarding3_text"></string>
 
 
     <!-- **************** HELP DIALOG ***************** -->
     <string name="help_tab_hints">Hints</string>
     <string name="help_tab_general">General</string>
+    <string name="general_text">During a session, you can either sit down and engage in a formal practice (such as meditation, breathing exercises, body scan) or continue with your day-to-day activities while focusing on your breath and observing any thoughts without judgment.</string>
+    <string name="general_text2">This may seem a bit vague, but don\'t worry! 😉 Once you start using the app, <b>you can always click on the help button</b> in the top right corner of the app <b>to get specific tips</b> on how to practice mindfulness effectively! </string>
+
     <string name="help_tab_warnings">Warnings</string>
 </resources>

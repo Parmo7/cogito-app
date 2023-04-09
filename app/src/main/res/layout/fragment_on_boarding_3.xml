@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/readex_pro_medium"
-                android:text="@string/onboarding2_title"
+                android:text="@string/onboarding3_title"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:layout_marginEnd="16dp"/>
@@ -48,7 +48,7 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:src="@drawable/ic_baseline_circle_24"
-                app:tint="@color/blue_4"/>
+                app:tint="@color/blue_2"/>
         </LinearLayout>
 
         <View
@@ -83,7 +83,44 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text0a"
+                android:text="@string/onboarding3_text0a"
+                android:textSize="16sp"
+                android:lineHeight="24dp"
+                android:fontFamily="@font/readex_pro_light"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/image_emotions"
+                android:layout_marginVertical="12dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/onboarding3_text0b"
+                android:textSize="16sp"
+                android:lineHeight="24dp"
+                android:fontFamily="@font/readex_pro_light"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tall_line_divider"
+                android:layout_marginVertical="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/readex_pro_light"
+                android:textColor="@color/blue_2"
+                android:textSize="14sp"
+                android:text="@string/onboarding3_sect1"
+                android:textAllCaps="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/onboarding3_text1"
                 android:textSize="16sp"
                 android:lineHeight="24dp"
                 android:fontFamily="@font/readex_pro_light"/>
@@ -91,93 +128,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:src="@drawable/image_meditating_woman"
-                android:layout_marginVertical="12dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text0b"
-                android:textSize="16sp"
-                android:lineHeight="24dp"
-                android:fontFamily="@font/readex_pro_light"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tall_line_divider"
-                android:layout_marginVertical="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/readex_pro_light"
-                android:textColor="@color/blue_2"
-                android:textSize="14sp"
-                android:text="@string/onboarding2_sect1"
-                android:textAllCaps="true"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text1a"
-                android:textSize="16sp"
-                android:lineHeight="24dp"
-                android:fontFamily="@font/readex_pro_light"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/image_listen_music"
-                android:layout_marginVertical="12dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text1b"
-                android:textSize="16sp"
-                android:lineHeight="24dp"
-
-                android:fontFamily="@font/readex_pro_light"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="16dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text1c"
-                android:textSize="16sp"
-                android:lineHeight="24dp"
-                android:fontFamily="@font/readex_pro_light"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tall_line_divider"
-                android:layout_marginVertical="8dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/readex_pro_light"
-                android:textColor="@color/blue_2"
-                android:textSize="14sp"
-                android:text="@string/onboarding2_sect2"
-                android:textAllCaps="true"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text2"
-                android:textSize="16sp"
-                android:lineHeight="24dp"
-                android:fontFamily="@font/readex_pro_light"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:src="@drawable/image_help"
+                android:src="@drawable/image_medical_support"
                 android:layout_marginVertical="12dp"/>
 
             <View
@@ -192,27 +143,27 @@
                 android:fontFamily="@font/readex_pro_light"
                 android:textColor="@color/blue_2"
                 android:textSize="14sp"
-                android:text="@string/onboarding2_sect3"
+                android:text="@string/onboarding3_sect2"
                 android:textAllCaps="true"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text3"
+                android:text="@string/onboarding3_text2"
                 android:textSize="16sp"
                 android:lineHeight="24dp"
                 android:fontFamily="@font/readex_pro_light"/>
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/image_journey"
+                android:layout_height="180dp"
+                android:src="@drawable/image_brain"
                 android:layout_marginVertical="12dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/onboarding2_text4"
+                android:text="@string/onboarding3_text3"
                 android:textSize="16sp"
                 android:lineHeight="24dp"
                 android:fontFamily="@font/readex_pro_light"/>
@@ -233,15 +184,14 @@
             android:id="@+id/prev_btn"
             style="@style/CogitoButton.Secondary"
             android:layout_marginBottom="12dp"
-            android:text="@string/onboarding2_prev_btn"
+            android:text="@string/onboarding3_prev_btn"
             app:icon="@drawable/ic_round_arrow_back_24"/>
 
         <Button
-            android:id="@+id/next_btn"
+            android:id="@+id/done_btn"
             style="@style/CogitoButton.Primary"
-            android:text="@string/onboarding2_next_btn"
-            app:icon="@drawable/ic_round_arrow_forward_24" />
-
+            android:text="@string/onboarding3_done_btn"
+            app:icon="@drawable/ic_baseline_done_24" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

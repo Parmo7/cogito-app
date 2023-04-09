@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/readex_pro_light"
                 android:text="@string/done_subtitle"
-                android:textColor="@color/grey_2"
+                android:textColor="@color/grey_1"
                 android:textSize="16sp" />
 
             <ImageView
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/readex_pro_light"
                 android:text="@string/done_additional_info"
-                android:textColor="@color/grey_2"
+                android:textColor="@color/grey_1"
                 android:textSize="16sp" />
 
         </LinearLayout>

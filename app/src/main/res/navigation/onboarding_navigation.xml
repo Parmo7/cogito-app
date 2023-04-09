@@ -26,5 +26,20 @@
             app:destination="@id/onBoardingFragment1"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_onBoardingFragment2_to_onBoardingFragment3"
+            app:destination="@id/onBoardingFragment3"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment3"
+        android:name="uk.ac.aston.cogito.ui.onboarding.OnBoardingFragment3"
+        android:label="OnBoardingFragment3" >
+        <action
+            android:id="@+id/action_onBoardingFragment3_to_onBoardingFragment2"
+            app:destination="@id/onBoardingFragment2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>
