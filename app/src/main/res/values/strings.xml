@@ -260,10 +260,30 @@
 
 
     <!-- **************** HELP DIALOG ***************** -->
-    <string name="help_tab_hints">Hints</string>
-    <string name="help_tab_general">General</string>
-    <string name="general_text">During a session, you can either sit down and engage in a formal practice (such as meditation, breathing exercises, body scan) or continue with your day-to-day activities while focusing on your breath and observing any thoughts without judgment.</string>
-    <string name="general_text2">This may seem a bit vague, but don\'t worry! 😉 Once you start using the app, <b>you can always click on the help button</b> in the top right corner of the app <b>to get specific tips</b> on how to practice mindfulness effectively! </string>
+    <string name="help_tab_tips">Tips</string>
+    <string name="help_tab_mindfulness">Mindfulness</string>
+    <string name="help_tab_app">The App</string>
+    <string name="help_tab_warnings">Challenges</string>
 
-    <string name="help_tab_warnings">Warnings</string>
+    <string name="onboarding2_sect0_new">What makes Cogito so unique?</string>
+    <string name="onboarding2_text2_mod">Please switch to tab \'Tips\' for information on how practice mindfulness effectively.</string>
+
+    <string name="tips_text0a">When you start a session in Cogito, <b>you can practice either formally or informally</b>. Formal practice involves setting aside a specific time to engage in mindfulness practice, while informal practice involves bringing mindful awareness to daily activities.</string>
+
+    <string name="tips_sect1">What if I\'m new to mindfulness?</string>
+    <string name="tips_text1a">If you are a beginner, <b>you may find it helpful to start with formal practice</b> and then eventually integrate mindfulness into your day-to-day activities as well.</string>
+    <string name="tips_text1b"><b>It\'s better to start with short sessions</b>, such as 5–10 minutes, <b>and then gradually increase</b> the length of the practice as you feel more comfortable 😊.</string>
+
+
+    <string name="tips_sect2">How can I do formal practice?</string>
+    <string name="tips_text2a"><b>Find a quiet place</b> where you won\'t be disturbed for the duration of the session. Then, <b>choose a comfortable seated position</b>, ideally with your back straight but not tense - or, if you prefer, lie down. <b>Allow your eyes to gently close</b>.</string>
+    <string name="tips_text2b">You may engage in the following techniques:</string>
+    <string name="tips_text2c"><b>Breathing Exercise</b> - Start by taking a few deep breaths to relax. Next, focus your attention on your breath and notice the sensations in your body as you breathe in and out. If your mind starts to wander, notice the thought and gently redirect your attention back to your breath.</string>
+    <string name="tips_text2d"><b>Body Scan</b> - Begin by slowly bringing your attention to your toes and notice any sensations in that area. Gradually move your attention up your body, observing any feelings as you go, until you reach the top of your head. If you feel any tension or discomfort, try to relax that area by taking a deep breath.</string>
+    <string name="tips_text2e"><b>Loving-kindness meditation</b> - Start by taking a few deep breaths. Then, bring to mind a person you care about and silently repeat phrases such as \"May you be happy, may you be healthy, may you be safe, may you live with ease.\" Repeat these phrases for yourself, the person you care about, and eventually for all beings.</string>
+
+    <string name="tips_sect3">How can I do informal practice?</string>
+    <string name="tips_text3a">If practicing mindfulness informally, you may use the following techniques:</string>
+    <string name="tips_text3b"><b>Mindful walking</b> - Find a quiet place to walk. As you move, focus on the sensations in your feet and legs - such as the feeling of your feet touching the ground. If your mind starts to wander, simply notice the thought and gently redirect your attention back to your walking.</string>
+    <string name="tips_text3c"><b>Mindful eating</b> - Choose a food that you enjoy and take a few moments to appreciate it before you begin eating. As you eat, focus on the sensations in your mouth - such as the taste, smell, and texture of your food. Notice any thoughts or emotions that arise.</string>
 </resources>

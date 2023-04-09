@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_constraintBottom_toTopOf="@+id/next_btn"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/title_container"
+    android:scrollbars="vertical"
+    android:requiresFadingEdge="vertical"
+    android:fadingEdgeLength="64dp"
+    android:scrollbarStyle="outsideInset"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="ScrollViewSize"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text0a"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:src="@drawable/image_mind"
+            android:layout_marginVertical="12dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tall_line_divider"
+            android:layout_marginVertical="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_light"
+            android:textColor="@color/blue_2"
+            android:textSize="14sp"
+            android:text="@string/tips_sect1"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text1a"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text1b"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tall_line_divider"
+            android:layout_marginVertical="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_light"
+            android:textColor="@color/blue_2"
+            android:textSize="14sp"
+            android:text="@string/tips_sect2"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text2a"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:src="@drawable/image_meditation"
+            android:layout_marginVertical="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text2b"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text2c"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:src="@drawable/image_breathing"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text2d"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:src="@drawable/image_body_scan"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text2e"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:src="@drawable/image_kindness"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tall_line_divider"
+            android:layout_marginVertical="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_light"
+            android:textColor="@color/blue_2"
+            android:textSize="14sp"
+            android:text="@string/tips_sect3"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text3a"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text3b"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:src="@drawable/image_walking"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tips_text3c"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:src="@drawable/image_eating"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"/>
+
+    </LinearLayout>
+</ScrollView>

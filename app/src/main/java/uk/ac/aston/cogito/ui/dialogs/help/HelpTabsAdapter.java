@@ -1,13 +1,8 @@
 package uk.ac.aston.cogito.ui.dialogs.help;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import uk.ac.aston.cogito.ui.home.HomeFragment;
 
 public class HelpTabsAdapter extends FragmentStateAdapter {
 
@@ -25,16 +20,20 @@ public class HelpTabsAdapter extends FragmentStateAdapter {
         // initialize the appropriate child fragment
         switch (position) {
             case 1:
-                tabType = HelpTabFragment.TabType.GENERAL;
+                tabType = HelpTabFragment.TabType.MINDFULNESS;
                 break;
 
             case 2:
+                tabType = HelpTabFragment.TabType.APP;
+                break;
+
+            case 3:
                 tabType = HelpTabFragment.TabType.WARNINGS;
                 break;
 
             case 0:
             default:
-                tabType = HelpTabFragment.TabType.HINTS;
+                tabType = HelpTabFragment.TabType.TIPS;
                 break;
         }
 
@@ -43,6 +42,6 @@ public class HelpTabsAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }

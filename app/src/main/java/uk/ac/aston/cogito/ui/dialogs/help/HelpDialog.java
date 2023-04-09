@@ -22,10 +22,11 @@ public class HelpDialog extends BottomSheetDialogFragment {
 
     private HelpTabsAdapter helpTabsAdapter;
     private ViewPager2 viewPager;
-    private static final TabProp[] tabProps = new TabProp[] {
-        new TabProp(R.string.help_tab_hints,R.drawable.ic_outline_lightbulb_24),
-        new TabProp(R.string.help_tab_general,R.drawable.ic_outline_info_24),
-        new TabProp(R.string.help_tab_warnings,R.drawable.ic_round_warning_amber_24)
+    private static final TabProp[] TAB_PROPS = new TabProp[] {
+        new TabProp(R.string.help_tab_tips, R.drawable.ic_outline_lightbulb_24),
+        new TabProp(R.string.help_tab_mindfulness, R.drawable.ic_outline_info_24),
+        new TabProp(R.string.help_tab_app, R.drawable.ic_outline_auto_awesome_24),
+        new TabProp(R.string.help_tab_warnings, R.drawable.ic_round_warning_amber_24),
     };
 
     public HelpDialog() {
@@ -51,8 +52,9 @@ public class HelpDialog extends BottomSheetDialogFragment {
         TabLayout tabLayout = view.findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, viewPager,
                 (tab, position) -> {
-                    tab.setText(tabProps[position].nameId);
-                    tab.setIcon(tabProps[position].iconId);
+                    tab.setText(TAB_PROPS[position].nameId);
+                    // TODO Decide whether to show or hide icon
+                    // tab.setIcon(TAB_PROPS[position].iconId);
                 }
         ).attach();
     }

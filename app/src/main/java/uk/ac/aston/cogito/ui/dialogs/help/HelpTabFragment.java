@@ -12,7 +12,7 @@ import uk.ac.aston.cogito.R;
 
 public class HelpTabFragment extends Fragment {
 
-    public enum TabType {HINTS, GENERAL, WARNINGS}
+    public enum TabType {TIPS, MINDFULNESS, APP, WARNINGS}
     private final TabType tabType;
 
 
@@ -25,17 +25,21 @@ public class HelpTabFragment extends Fragment {
                              Bundle savedInstanceState) {
         int layoutResId;
         switch (tabType) {
-            case GENERAL:
-                layoutResId = R.layout.fragment_help_tab_general;
+            case MINDFULNESS:
+                layoutResId = R.layout.fragment_help_tab_mindfulness;
+                break;
+
+            case APP:
+                layoutResId = R.layout.fragment_help_tab_app;
                 break;
 
             case WARNINGS:
                 layoutResId = R.layout.fragment_help_tab_warnings;
                 break;
 
-            case HINTS:
+            case TIPS:
             default:
-                layoutResId = R.layout.fragment_help_tab_hints;
+                layoutResId = R.layout.fragment_help_tab_tips;
         }
 
         // Inflate the layout for this fragment

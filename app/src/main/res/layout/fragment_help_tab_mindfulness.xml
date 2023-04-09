@@ -16,37 +16,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="ScrollViewSize"
+        tools:ignore="RtlSymmetry,ScrollViewSize"
         android:orientation="vertical"
-        android:scrollbars="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/onboarding3_text0a"
-            android:textSize="16sp"
-            android:lineHeight="24dp"
-            android:fontFamily="@font/readex_pro_light"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:src="@drawable/image_emotions"
-            android:layout_marginVertical="12dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/onboarding3_text0b"
-            android:textSize="16sp"
-            android:lineHeight="24dp"
-            android:fontFamily="@font/readex_pro_light"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/tall_line_divider"
-            android:layout_marginVertical="8dp"/>
+        android:scrollbars="vertical"
+        android:paddingEnd="4dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,21 +27,22 @@
             android:fontFamily="@font/readex_pro_light"
             android:textColor="@color/blue_2"
             android:textSize="14sp"
-            android:text="@string/onboarding3_sect1"
+            android:text="@string/onboarding1_sect1"
             android:textAllCaps="true"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/onboarding3_text1"
+            android:text="@string/onboarding1_text1"
             android:textSize="16sp"
             android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
             android:fontFamily="@font/readex_pro_light"/>
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="160dp"
-            android:src="@drawable/image_medical_support"
+            android:src="@drawable/image_observe"
             android:layout_marginVertical="12dp"/>
 
         <View
@@ -83,29 +57,61 @@
             android:fontFamily="@font/readex_pro_light"
             android:textColor="@color/blue_2"
             android:textSize="14sp"
-            android:text="@string/onboarding3_sect2"
-            android:textAllCaps="true"/>
+            android:text="@string/onboarding1_sect2"
+            android:textAllCaps="true" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/onboarding3_text2"
+            android:text="@string/onboarding1_text2a"
             android:textSize="16sp"
             android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
+            android:fontFamily="@font/readex_pro_light"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:src="@drawable/image_benefits"
+            android:layout_marginVertical="12dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tall_line_divider"
+            android:layout_marginVertical="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/readex_pro_light"
+            android:text="@string/onboarding1_sect3"
+            android:textAllCaps="true"
+            android:textColor="@color/blue_2"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding1_text3a"
+            android:textSize="16sp"
+            android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
             android:fontFamily="@font/readex_pro_light"/>
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:src="@drawable/image_brain"
+            android:layout_height="150dp"
+            android:src="@drawable/image_life"
             android:layout_marginVertical="12dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/onboarding3_text3"
+            android:text="@string/onboarding1_text3b"
             android:textSize="16sp"
             android:lineHeight="24dp"
+            android:textColor="@color/grey_1"
             android:fontFamily="@font/readex_pro_light"/>
 
     </LinearLayout>
