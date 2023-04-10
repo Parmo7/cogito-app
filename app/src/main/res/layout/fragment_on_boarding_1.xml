@@ -194,15 +194,6 @@
                 android:src="@drawable/image_life"
                 android:layout_marginBottom="12dp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/onboarding1_text3b"
-                android:textSize="16sp"
-                android:lineHeight="24dp"
-                android:textColor="@color/grey_1"
-                android:fontFamily="@font/readex_pro_light"/>
-
         </LinearLayout>
     </ScrollView>
 

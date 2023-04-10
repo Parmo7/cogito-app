@@ -202,11 +202,11 @@
     <string name="onboarding1_title">About Mindfulness</string>
     <string name="onboarding1_continue_btn">Next</string>
 
-    <string name="onboarding1_text0a">Hey there, <b>welcome to Cogito!</b> We\'re glad to have you onboard! 🥰 </string>
+    <string name="onboarding1_text0a">Hey there, <b>welcome to Cogito!</b> 🥰 </string>
     <string name="onboarding1_text0b">Our app is designed to help you <b>cultivate mindfulness in your everyday life</b>.</string>
 
     <string name="onboarding1_sect1">What is mindfulness?</string>
-    <string name="onboarding1_text1"><b>Mindfulness is the state of being fully present and engaged in what in what you\'re doing</b> - whether it\'s talking to a friend, eating a meal, or just walking down the street. When you\'re mindful, you\'re simply aware of what\'s happening in the present moment, and <b>you\'re able to observe your thoughts and emotions without getting caught up in them.</b></string>
+    <string name="onboarding1_text1"><b>Mindfulness is the state of being fully engaged in what you\'re doing</b> - whether it\'s talking to a friend, eating a meal, or just walking. When you\'re mindful, you\'re simply aware of what\'s happening in the present moment, and <b>you\'re able to observe your thoughts and emotions without getting caught up in them.</b></string>
 
     <string name="onboarding1_sect2">What benefits would I get?</string>
     <string name="onboarding1_text2a">Research has shown that mindfulness can help you <b>reduce stress and anxiety, increase focus and concentration, enhance sleep quality, improve relationships, and boost overall well-being</b> 🤩.</string>
@@ -227,10 +227,10 @@
     <string name="onboarding2_sect1">How does it work?</string>
     <string name="onboarding2_text1a">With our app, you can customise your practice through configurations. <b>Think of a configuration like a recipe</b> for your mindfulness session 🥗: you can choose <b>how long you want to practice for</b> and <b>what type of music you want to listen to</b> in the background. The right music can help create a more peaceful atmosphere to deepen your experience. </string>
     <string name="onboarding2_text1b">Additionally, <b>you can set different bell sounds to play throughout your session</b> - bells serve as gentle reminders to bring your attention back to the present moment, in case your mind starts to wander.</string>
-    <string name="onboarding2_text1c">Once you\'ve created your perfect recipe, <b>simply hit play and… let your session begin!</b> 😉</string>
+    <string name="onboarding2_text1c">Once you\'ve created your perfect recipe, <b>simply hit play and… let your session begin!</b> 😄</string>
 
     <string name="onboarding2_sect2">What do I do during a session?</string>
-    <string name="onboarding2_text2">If everything so far seems too vague, don\'t worry! 😉 Once you start using the app, <b>you can always click on the help button</b> at the top <b>to get specific tips</b> on how to practice mindfulness effectively! </string>
+    <string name="onboarding2_text2">Once you start using the app, <b>click on the help button</b> in the top-right corner <b>to get specific tips</b> on how to practice mindfulness effectively! </string>
 
     <string name="onboarding2_sect3">Is it for me?</string>
     <string name="onboarding2_text3">Although our app is designed with experienced mindfulness practitioners in mind, <b>beginners are absolutely welcome to use it as well</b>. We believe that <b>mindfulness is a journey, and everyone has to start somewhere.</b></string>
@@ -243,7 +243,7 @@
     <string name="onboarding3_done_btn">Let\'s get started</string>
 
     <string name="onboarding3_text0a">Remember that mindfulness practice is a journey, and <b>like any journey, there will be bumps in the road</b>. Don\'t get discouraged if you find yourself struggling to focus during your practice: this is a normal part of the process!</string>
-    <string name="onboarding3_text0b">Importantly, if at any point you feel overwhelmed or anxious, please pause the session and take a break. It is important to <b>listen to your body and practice at a pace that feels comfortable for you.</b></string>
+    <string name="onboarding3_text0b">Importantly, <b>if at any point you feel overwhelmed</b> or anxious, please pause the session and <b>take a break</b>.</string>
 
 
     <string name="onboarding3_sect1">Is mindfulness a medical tool?</string>
