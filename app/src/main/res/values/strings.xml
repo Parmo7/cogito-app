@@ -118,8 +118,9 @@
 
     <!-- **************** DONE PAGE ***************** -->
     <string name="done_title">Well Done!</string>
-    <string name="done_subtitle">You have successfully completed your mindfulness session. Congratulations! </string>
-    <string name="done_additional_info">How did it go? We appreciate it\'s not always easy to maintain a mindful attitude during a session.\n\nHowever, rest assured that feeling distracted and losing focus is quite common. So don\'t worry, this is part of the process!</string>
+    <string name="done_text1"><b>You\'ve completed your mindfulness session. Congratulations! </b>🎉 Take a deep breath and appreciate this moment.</string>
+    <string name="done_text2">Remember that mindfulness takes time and practice, so <b>don\'t worry if you found yourself getting distracted or feeling overwhelmed</b>. This is a natural part of the process! 😊 <b>Be kind to yourself</b> and acknowledge any emotions that come up during the practice.</string>
+    <string name="done_text3">Over time, you will notice that <b>your ability to focus and stay present will improve</b>. Keep up the great work! ✨</string>
     <string name="done_ok_btn">Ok. Great!</string>
 
 
