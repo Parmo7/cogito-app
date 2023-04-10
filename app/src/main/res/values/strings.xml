@@ -126,7 +126,7 @@
     <!-- **************** SETTINGS PAGE ***************** -->
     <string name="settings_value_not_set">Not set</string>
 
-    <string name="settings_section_formal">Meditation Reminders</string>
+    <string name="settings_section_formal">Practice Reminders</string>
     <string name="settings_field_enable_formal">Enable</string>
     <string name="settings_field_num_formal">Reminders per day</string>
     <string name="settings_field_formal1">Reminder 1</string>
@@ -140,9 +140,9 @@
     <string name="settings_field_enable_informal">Enable</string>
 
     <!-- Dialogs -->
-    <string name="dialog_numformal_title">Meditation Reminders</string>
+    <string name="dialog_numformal_title">Practice Reminders</string>
     <string name="dialog_numformal_done_btn">Done</string>
-    <string name="dialog_numformal_subtitle">Please choose how many reminders you would like to receive per day to practice mindfulness meditation.</string>
+    <string name="dialog_numformal_subtitle">Please choose how many reminders you would like to receive per day to practice mindfulness.</string>
 
     <string name="dialog_numinformal_title">Mindful Moments Reminders</string>
     <string name="dialog_numinformal_done_btn">Done</string>
@@ -150,7 +150,7 @@
 
     <string name="dialog_formaltime_title">Set Reminder Time</string>
     <string name="dialog_formaltime_done_btn">Done</string>
-    <string name="dialog_formaltime_subtitle">Please pick a time for the meditation reminder.</string>
+    <string name="dialog_formaltime_subtitle">Please pick a time for the mindfulness practice reminder.</string>
 
 
     <!-- **************** NOTIFICATIONS ***************** -->

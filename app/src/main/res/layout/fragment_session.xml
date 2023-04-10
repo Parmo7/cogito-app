@@ -48,8 +48,8 @@
 
     <ImageView
         android:id="@+id/session_animated_circle"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
         android:background="@drawable/round_shape"
         app:layout_constraintTop_toBottomOf="@id/subtitle"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
