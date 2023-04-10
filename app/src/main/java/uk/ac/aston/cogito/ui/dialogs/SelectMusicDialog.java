@@ -53,6 +53,7 @@ public class SelectMusicDialog extends FormBottomDialog {
 
             if (selectedBell.getResId() != 0) {
                 player = MediaPlayer.create(getContext(), selectedBell.getResId());
+                player.seekTo(1000 * 15);
                 player.start();
             }
         });
