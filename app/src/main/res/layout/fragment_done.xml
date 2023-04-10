@@ -57,7 +57,9 @@
                 android:text="@string/done_text1"
                 android:textSize="16sp"
                 android:lineHeight="24dp"
-                android:fontFamily="@font/readex_pro_light"/>
+                android:fontFamily="@font/readex_pro_light"
+                android:textColor="@color/grey_1"
+                />
 
 
             <ImageView
@@ -73,7 +75,8 @@
                 android:textSize="16sp"
                 android:lineHeight="24dp"
                 android:fontFamily="@font/readex_pro_light"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/grey_1"/>
 
 
             <TextView
@@ -82,7 +85,8 @@
                 android:text="@string/done_text3"
                 android:textSize="16sp"
                 android:lineHeight="24dp"
-                android:fontFamily="@font/readex_pro_light"/>
+                android:fontFamily="@font/readex_pro_light"
+                android:textColor="@color/grey_1"/>
 
         </LinearLayout>
     </ScrollView>
